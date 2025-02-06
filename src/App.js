@@ -23,12 +23,14 @@ import Balance from './pages/Balance';
 import AddMoney from './pages/AddMoney';
 import SendMoney from './pages/SendMoney'
 import Cards from './pages/Cards';
-
+import Recipients from './pages/Recipients';
+import RecipientsItem from './pages/RecipientsItem';
+import AddRecipient from './pages/AddRecipient';
 function Layout() {
   const location = useLocation();
 
   // Verificăm dacă ruta curentă este "/sign-in", "/sign-up", "/" sau "/edit-personal-details"
-  const isAuthRoute = location.pathname === '/sign-in' || location.pathname === '/balances/add-money' || location.pathname === '/sign-up' || location.pathname === '/' || location.pathname === '/edit-personal-details' || location.pathname === '/training' || location.pathname === '/open-balance';
+  const isAuthRoute = location.pathname === '/sign-in' || location.pathname === '/balances/add-money' || location.pathname === '/recipients/add' || location.pathname === '/sign-up' || location.pathname === '/' || location.pathname === '/edit-personal-details' || location.pathname === '/training' || location.pathname === '/open-balance';
 
   return (
     <>
@@ -57,7 +59,11 @@ function App() {
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/training" element={<Training />} />
             <Route path="/open-balance" element={<OpenBalance />} />
+            <Route path="/recipients" element={<Recipients />} />
+            <Route path={'/recipients/:recipientId'} element={<RecipientsItem />} />
             <Route path="/cards" element={<Cards />} />
+            <Route path="/recipients/add" element={<AddRecipient />} />
+
 
             {/* Pagini protejate de TrainingGuard */}
             <Route path="/home" element={

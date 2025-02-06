@@ -3,7 +3,7 @@ import { doc, updateDoc } from 'firebase/firestore';
 import { useUser } from '../hooks/userContext';
 import { db } from '../firebase.config';
 import { useNavigate } from 'react-router-dom';
-
+import sendNotification from '../hooks/sendNotification';
 function Training() {
   const user = useUser();
   const navigate = useNavigate();
@@ -22,7 +22,14 @@ function Training() {
     try {
       const userDocRef = doc(db, 'users', user.uid);
       await updateDoc(userDocRef, { hasCompletedTraining: true });
-      navigate('/home'); // Redirecționează către pagina Home după finalizare
+      sendNotification({
+        userId: user.uid,
+        message: `Congratulations! You have completed training session!`,
+        href: `/`,
+        isRead: 'false',
+        senderId: 'BOT'
+      });
+      navigate('/'); // Redirecționează către pagina Home după finalizare
     } catch (error) {
       console.error('Error marking training as complete:', error);
     }

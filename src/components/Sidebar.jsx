@@ -7,7 +7,7 @@ import { IoPeopleOutline } from "react-icons/io5";
 import { RiCurrencyLine } from "react-icons/ri";
 import { Link } from 'react-router-dom';
 
-function Sidebar() {
+function Sidebar({ isSidebarOpen }) {
     useEffect(() => {
         initFlowbite()
       }, [])
@@ -16,8 +16,11 @@ function Sidebar() {
     <>
 
 
-      <aside id="logo-sidebarr" className="fixed z-40 w-64 h-screen transition-transform -translate-x-full bg-white  sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="logo-sidebar">
-        <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+<aside
+      className={`fixed z-40 w-64 h-screen transition-transform bg-white dark:bg-gray-800  dark:border-gray-700 
+      ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}
+      aria-label="logo-sidebar"
+    >        <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
         <ul className="space-y-2 font-medium">
   <li>
     <Link to="/home" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 group">
@@ -32,10 +35,10 @@ function Sidebar() {
     </Link>
   </li>
   <li>
-    <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 group">
+    <Link to="/recipients" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 group">
       <IoPeopleOutline className="text-xl text-gray-500 group-hover:text-blue-500 dark:group-hover:text-white" />
       <span className="ml-3 text-base">Recipients</span>
-    </a>
+    </Link>
   </li>
   <li>
     <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 group">
