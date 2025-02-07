@@ -7,6 +7,7 @@ import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../firebase.config';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import CurrencyFlag from 'react-currency-flags';
 
 function Recipients() {
     
@@ -87,16 +88,17 @@ function Recipients() {
       key={index}
       className="flex items-center p-4 rounded-lg cursor-pointer hover:shadow-md transition"
     >
-      <div className="flex items-center justify-center w-10 h-10 bg-gray-200 rounded-full text-black font-bold">
-        {getInitials(recipient.accountHolderName)}
+      <div className="flex items-center justify-center w-10 h-10 bg-gray-200 rounded-full text-black font-bold relative ">
+        {getInitials(recipient.accountHolderName)}<CurrencyFlag currency={recipient.currency} size="md" className="bottom-0 left-7 absolute rounded-full w-3.5 h-3.5" />
       </div>
       <div className="ml-4">
         <p className="font-semibold">{recipient.accountHolderName}</p>
         <p className="text-sm text-gray-500">
-          RON account ending in {recipient.iban.slice(-4)}
+          {recipient.currency} account ending in {recipient.iban.slice(-4)}
         </p>
       </div>
       <div className="ml-auto text-gray-400">&gt;</div>
+
     </Link>
   ))
 )}

@@ -31,7 +31,6 @@ const AllTransactions = () => {
       fetchTransactions();
     }
   }, [user]);
-
   const filteredTransactions = transactions.filter((txn) =>
     (txn.name || '').toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -50,7 +49,6 @@ const AllTransactions = () => {
     }, {});
   };
   
-  console.log(transactions)
   const sortedTransactions = [...transactions].sort((a, b) => b.date.seconds - a.date.seconds);
   const groupedTransactions = groupByDate(sortedTransactions);
   
@@ -95,7 +93,7 @@ const AllTransactions = () => {
                 </div>
                 <div>
                   <p className="font-medium">{txn.name}</p>
-                  <p className="text-sm text-gray-500">{txn.type === 'sent' ? 'Sent' : 'Received'}</p>
+                  <p className="text-sm text-gray-500">{txn.type === 'sent' ? 'Sent' : txn.type === 'received'  ? 'Received' : txn.type === 'moved' || 'deposit' ? 'Moved' : 'Error'}</p>
                 </div>
               </div>
               <div className="text-right">

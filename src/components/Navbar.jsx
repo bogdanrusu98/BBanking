@@ -61,7 +61,7 @@ function Navbar({ toggleSidebar }) {
                 </button> */}
                  <button
             onClick={toggleSidebar}
-            className="p-2 mr-2 text-gray-600 rounded-lg cursor-pointer lg:hidden hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="p-2 mr-2 text-gray-600 rounded-lg cursor-pointer lg:hidden hover:bg-gray-100 dark:hover:bg-gray-700"data-dropdown-toggle="notification-dropdownn"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 17 14">
               <path stroke="currentColor" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
@@ -86,7 +86,7 @@ function Navbar({ toggleSidebar }) {
                     <div class="block py-2 px-4 text-base font-medium text-center text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         Notifications
                     </div>
-                  {console.log(notifications)}
+
                   {notifications.length > 0 ? (
                   notifications.map((notification, index) => (
   <div key={index}>

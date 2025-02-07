@@ -29,8 +29,8 @@ function PasswordConfirmationModal({ isOpen, onClose, onSuccess }) {
         return;
       }
   
-      console.log('Reauthenticating user:', user.email);
-  
+
+      
       const credential = EmailAuthProvider.credential(user.email, password);
   
       // Reautentifică utilizatorul

@@ -38,6 +38,7 @@ function OpenBalance() {
         balance: 0, // Balance inițial pentru noul cont
         createdAt: new Date(), // Data la care a fost creat contul
         iban: newIban, // Adăugăm IBAN-ul generat
+        name: user.firstName + ' ' + user.lastName
       });
 
       toast.success('Account created succesfully')

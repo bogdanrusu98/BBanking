@@ -24,7 +24,6 @@ function Home() {
       const data = await response.json();
       if (data.success) {
         setExchangeRates(data.rates);
-        console.log('Exchange rates:', data.rates);
       } else {
         console.error('Failed to fetch exchange rates:', data.error);
       }
@@ -52,7 +51,6 @@ function Home() {
           ...doc.data(),
         }));
         setAccounts(fetchedAccounts);
-        console.log('Fetched accounts:', fetchedAccounts);
       } catch (error) {
         console.error('Error fetching accounts:', error);
         toast.error('A apărut o eroare la preluarea conturilor.');
@@ -90,7 +88,6 @@ function Home() {
         }
       }, 0);
 
-      console.log('Total balance in RON:', total);
       setTotalBalanceInRON(total);
     }
   }, [accounts, exchangeRates]);
@@ -103,9 +100,9 @@ function Home() {
           <h2 className="text-xl font-semibold">Total balance</h2>
           <div className="text-3xl font-bold mt-2 flex items-center">
           {new Intl.NumberFormat('en-US').format(totalBalanceInRON.toFixed(2))} RON
-            <span className="ml-2 text-sm text-gray-500">
+            {/* <span className="ml-2 text-sm text-gray-500">
               <VscGraph className="logo-button text-2xl" />
-            </span>
+            </span> */}
           </div>
           <div className="flex mt-4 space-x-4">
             <Link to="/balances/send-money">
@@ -126,7 +123,7 @@ function Home() {
                 <div className="w-64 h-52 p-4 bg-gray-100 rounded-xl flex flex-col">
                   <div className="flex items-center mb-2">
                     <span className="text-2xl mr-2">
-                      <CurrencyFlag currency={account.currency} size="xl" className="rounded-lg" />
+                      <CurrencyFlag currency={account.currency} size="xl" className="rounded-xl" />
                     </span>
                     <h3 className="font-semibold text-lg">{account.currency}</h3>
                   </div>

@@ -143,7 +143,18 @@ function SendMoney() {
               senderId: selectedAccount.id,
             });
           }
-      
+          const recipientRef = collection(db, 'recipients');
+
+          await addDoc(recipientRef, {
+            userId: user.uid, // Asociază contul cu utilizatorul curent
+            createdAt: new Date(), // Data la care a fost creat contul
+            iban: recipientIban, // Adăugăm IBAN-ul generat
+            bankName: 'Auto',
+            accountType: 'Private',
+            accountHolderName: recipientAccount.name, // Folosim name în loc de fullName
+            currency: recipientAccount.currency,
+            email: ''
+          });
           // Navighează la pagina principală sau afișează un mesaj de succes
           navigate('/home');
         } catch (error) {

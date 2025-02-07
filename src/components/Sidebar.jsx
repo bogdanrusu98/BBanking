@@ -17,9 +17,9 @@ function Sidebar({ isSidebarOpen }) {
 
 
 <aside
-      className={`fixed z-40 w-64 h-screen transition-transform bg-white dark:bg-gray-800  dark:border-gray-700 
+      className={`fixed hidden z-40 w-64 h-screen transition-transform bg-white dark:bg-gray-800  dark:border-gray-700 
       ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}
-      aria-label="logo-sidebar"
+      aria-label="logo-sidebar" id="notification-dropdownn"
     >        <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
         <ul className="space-y-2 font-medium">
   <li>
