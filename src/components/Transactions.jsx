@@ -3,37 +3,42 @@ import { useUser } from '../hooks/userContext';
 import { FaRegArrowAltCircleUp, FaLandmark, FaRegArrowAltCircleDown, FaExchangeAlt } from 'react-icons/fa';
 import { db } from '../firebase.config';
 import { collection, query, where, getDocs, limit, orderBy } from 'firebase/firestore';
-
+import { Link } from 'react-router-dom';
 function Transactions() {
 
     const user = useUser();
     const [transactions, setTransactions] = useState([]);
-  
-  useEffect(() => {
-
-    const fetchTransactions = async () => {
-      try {
-        const q = query(
-          collection(db, 'transactions'),
-          where('userId', '==', user.uid),
-          orderBy('date', 'desc'),
-          limit(5) 
-        );
-        const querySnapshot = await getDocs(q);
-        const fetchedTransactions = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setTransactions(fetchedTransactions);
-      } catch (error) {
-        console.error('Error fetching transactions:', error);
+    useEffect(() => {
+      const fetchTransactions = async () => {
+        try {
+          const q = query(
+            collection(db, 'transactions'),
+            where('userId', '==', user.uid),
+            orderBy('date', 'desc'),
+            limit(5)
+          );
+          const querySnapshot = await getDocs(q);
+          const fetchedTransactions = querySnapshot.docs.map((doc) => {
+            const data = doc.data();
+            // Formatează suma cu virgule ca separator de mii
+            if (data.amount) {
+              data.amount = new Intl.NumberFormat('en-US').format(data.amount);
+            }
+            return {
+              id: doc.id,
+              ...data,
+            };
+          });
+          setTransactions(fetchedTransactions);
+        } catch (error) {
+          console.error('Error fetching transactions:', error);
+        }
+      };
+    
+      if (user) {
+        fetchTransactions();
       }
-    };
-
-    if (user) {
-      fetchTransactions();
-    }
-  }, [user]);
+    }, [user]);
 
   return (
     <>
@@ -41,7 +46,7 @@ function Transactions() {
      <div className="mt-10">
      <div className="flex justify-between items-center mb-4">
        <h2 className="text-2xl font-semibold">Transactions</h2>
-       <a href="#" className="text-green-600 hover:underline">See all</a>
+       <Link to="/all-transactions" className="text-green-600 hover:underline">See all</Link>
      </div>
      <div className="space-y-4">
        {transactions.map((transaction, index) => (

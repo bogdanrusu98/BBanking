@@ -8,16 +8,16 @@ import { collection, query, where, getDocs } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 import CurrencyFlag from 'react-currency-flags';
 import Transactions from '../components/Transactions';
-
+import { toast } from 'react-toastify';
 function Home() {
   const user = useUser();
   const [accounts, setAccounts] = useState([]);
   const [exchangeRates, setExchangeRates] = useState({});
   const [totalBalanceInRON, setTotalBalanceInRON] = useState(0);
 
-  // API Key pentru FXRatesAPI
-  const API_KEY = 'fxr_live_276554b1eed5a8615cf0cca3641b748ae9ba'; // Înlocuiește cu cheia ta API
+  const API_KEY = 'fxr_live_276554b1eed5a8615cf0cca3641b748ae9ba';
 
+  // Funcția de fetch pentru cursurile de schimb
   const fetchExchangeRates = async () => {
     try {
       const response = await fetch(`https://api.fxratesapi.com/latest?api_key=${API_KEY}&base=RON`);
@@ -33,39 +33,68 @@ function Home() {
     }
   };
 
+  // Se face fetch la cursurile de schimb la montarea componentului
   useEffect(() => {
     fetchExchangeRates();
   }, []);
 
+  // Se face fetch la conturi imediat ce avem user-ul
   useEffect(() => {
     const fetchAccounts = async () => {
       try {
-        const q = query(collection(db, 'accounts'), where('userId', '==', user.uid));
-        const querySnapshot = await getDocs(q);
+        const accountsQuery = query(
+          collection(db, 'accounts'),
+          where('userId', '==', user.uid)
+        );
+        const querySnapshot = await getDocs(accountsQuery);
         const fetchedAccounts = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
         setAccounts(fetchedAccounts);
-
-        // Calculează soldul total în RON
-        if (fetchedAccounts.length > 0 && Object.keys(exchangeRates).length > 0) {
-          const total = fetchedAccounts.reduce((acc, account) => {
-            const rate = exchangeRates[account.currency] || 1; // Folosește rata de schimb sau 1 dacă este RON
-            return acc + (account.balance / rate); // Împarte la rata pentru a obține valoarea în RON
-          }, 0);
-          console.log('Total in RON:', total);
-          setTotalBalanceInRON(total);
-        }
+        console.log('Fetched accounts:', fetchedAccounts);
       } catch (error) {
         console.error('Error fetching accounts:', error);
+        toast.error('A apărut o eroare la preluarea conturilor.');
       }
     };
 
-    if (user && Object.keys(exchangeRates).length > 0) {
+    if (user) {
       fetchAccounts();
     }
-  }, [user, exchangeRates]);
+  }, [user]);
+
+  // Calculează soldul total în RON ori de câte ori se schimbă conturile sau cursurile
+  useEffect(() => {
+    if (accounts.length > 0 && Object.keys(exchangeRates).length > 0) {
+      const total = accounts.reduce((acc, account) => {
+        // Asigură-te că valuta din cont este scrisă cu majuscule pentru a se potrivi cu cheile din exchangeRates
+        const currency = account.currency.toUpperCase();
+
+        // Dacă contul este în RON, nu e nevoie de conversie
+        if (currency === 'RON') {
+          return acc + account.balance;
+        }
+
+        const rate = exchangeRates[currency];
+        if (rate) {
+          // Pentru Cazul A: dacă API-ul returnează 1 RON = X valută, se face împărțirea
+          const balanceInRON = account.balance / rate;
+          // Dacă, în schimb, API-ul returnează 1 [currency] = X RON, folosește:
+          // const balanceInRON = account.balance * rate;
+          return acc + balanceInRON;
+        } else {
+          // Dacă nu găsește cursul pentru valuta respectivă, se adaugă direct (sau poți trata eroarea)
+          console.warn(`Nu s-a găsit cursul pentru valuta: ${currency}`);
+          return acc + account.balance;
+        }
+      }, 0);
+
+      console.log('Total balance in RON:', total);
+      setTotalBalanceInRON(total);
+    }
+  }, [accounts, exchangeRates]);
+
   return (
     <div className="p-4 sm:ml-64">
       <div className="p-4 rounded-lg ">
@@ -73,7 +102,7 @@ function Home() {
         <div className="mb-6">
           <h2 className="text-xl font-semibold">Total balance</h2>
           <div className="text-3xl font-bold mt-2 flex items-center">
-            {totalBalanceInRON.toFixed(2)} RON
+          {new Intl.NumberFormat('en-US').format(totalBalanceInRON.toFixed(2))} RON
             <span className="ml-2 text-sm text-gray-500">
               <VscGraph className="logo-button text-2xl" />
             </span>

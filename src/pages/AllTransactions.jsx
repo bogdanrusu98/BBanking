@@ -1,0 +1,117 @@
+import React, { useEffect, useState } from 'react';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { db } from '../firebase.config';
+import { useUser } from '../hooks/userContext';
+import { FiDownload, FiFilter, FiSearch } from 'react-icons/fi';
+
+const AllTransactions = () => {
+  const user = useUser();
+  const [transactions, setTransactions] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+    const fetchTransactions = async () => {
+      try {
+        const q = query(
+          collection(db, 'transactions'), // asigură-te că această colecție există
+          where('userId', '==', user.uid)
+        );
+        const querySnapshot = await getDocs(q);
+        const fetchedTransactions = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setTransactions(fetchedTransactions);
+      } catch (error) {
+        console.error('Error fetching transactions:', error);
+      }
+    };
+
+    if (user) {
+      fetchTransactions();
+    }
+  }, [user]);
+
+  const filteredTransactions = transactions.filter((txn) =>
+    (txn.name || '').toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  
+
+
+  const groupByDate = (transactions) => {
+    return transactions.reduce((acc, txn) => {
+      const timestamp = txn.date; // presupunem că txn.date este un obiect cu seconds și nanoseconds
+      const dateObj = new Date(timestamp.seconds * 1000); // conversia în Date
+      const date = dateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  
+      if (!acc[date]) acc[date] = [];
+      acc[date].push(txn);
+      return acc;
+    }, {});
+  };
+  
+  console.log(transactions)
+  const sortedTransactions = [...transactions].sort((a, b) => b.date.seconds - a.date.seconds);
+  const groupedTransactions = groupByDate(sortedTransactions);
+  
+  
+
+  return (
+    <div className="max-w-3xl mx-auto p-4">
+      <div className="flex items-center justify-between mb-4">
+        <h1 className="text-2xl font-bold">Transactions</h1>
+        <div className="flex gap-2">
+          {/* <button className="p-2 bg-green-500 text-white rounded hover:bg-green-600 flex items-center gap-1">
+            <FiFilter /> Filters
+          </button>
+          <button className="p-2 bg-green-500 text-white rounded hover:bg-green-600 flex items-center gap-1">
+            <FiDownload /> Download
+          </button> */}
+        </div>
+      </div>
+
+      <div className="relative mb-4">
+        <input
+          type="text"
+          placeholder="Search"
+          className="w-full p-2 pl-10 border rounded-full"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <FiSearch className="absolute left-3 top-3 text-gray-400" />
+      </div>
+
+      {Object.entries(groupedTransactions).map(([date, txns]) => (
+        <div key={date} className="mb-6">
+          <h2 className="text-gray-500 font-semibold mb-2">{date}</h2>
+          {txns.map((txn) => (
+            <div
+              key={txn.id}
+              className="flex items-center justify-between p-4 border-b hover:bg-gray-50"
+            >
+              <div className="flex items-center gap-3">
+                <div className="bg-gray-200 p-2 rounded-full">
+                  {txn.type === 'sent' ? '⬆️' : txn.type === 'received' ? '⬇️' : '↔️'}
+                </div>
+                <div>
+                  <p className="font-medium">{txn.name}</p>
+                  <p className="text-sm text-gray-500">{txn.type === 'sent' ? 'Sent' : 'Received'}</p>
+                </div>
+              </div>
+              <div className="text-right">
+                <p className={`font-semibold ${txn.amount > 0 ? 'text-green-500' : 'text-red-500'}`}>
+                  {txn.amount > 0 ? '+' : ''}{txn.amount} {txn.currency}
+                </p>
+                {txn.convertedAmount && (
+                  <p className="text-sm text-gray-400">{txn.convertedAmount} RON</p>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default AllTransactions;
