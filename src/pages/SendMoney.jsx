@@ -172,7 +172,7 @@ function SendMoney() {
 
   return (
     <div className="p-6 sm:ml-64">
-      <div className="max-w-2xl mx-auto  dark:bg-gray-800 dark:text-gray-400 shadow-md bg-white p-6 rounded-lg shadow-md">
+      <div className="max-w-2xl mx-auto  dark:bg-gray-700 dark:text-gray-400 shadow-md bg-white p-6 rounded-xl shadow-md">
         <ProgressBar currentStep={currentStep} />
 
         {currentStep === 0 && (
@@ -182,7 +182,7 @@ function SendMoney() {
               {accounts.map((account) => (
                 <div
                   key={account.id}
-                  className="p-4 bg-gray-100 rounded-lg  dark:bg-gray-800  flex items-center justify-between cursor-pointer hover:bg-gray-100"
+                  className="p-4 bg-gray-100 rounded-xl  dark:bg-gray-600  flex items-center justify-between cursor-pointer hover:bg-gray-100"
                   onClick={() => handleSelectAccount(account)}
                 >
                   <div className="flex items-center">

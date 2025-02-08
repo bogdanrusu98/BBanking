@@ -50,7 +50,7 @@ function Transactions() {
      </div>
      <div className="space-y-4">
        {transactions.map((transaction, index) => (
-         <div key={index} className="flex items-center  dark:bg-gray-800 space-x-4 p-4 bg-white rounded-lg shadow-lg">
+         <div key={index} className="flex items-center  dark:bg-gray-700 space-x-4 p-4 bg-white rounded-xl shadow-lg">
            <div className="text-gray-500">
            {(transaction.type === 'received' || transaction.type === 'deposit') && (
 <FaRegArrowAltCircleDown className="text-green-500 w-6 h-6" />

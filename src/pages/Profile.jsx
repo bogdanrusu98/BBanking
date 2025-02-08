@@ -53,7 +53,7 @@ function Profile() {
           <div>
             <h1 className="text-xl font-bold">{user.firstName} {user.lastName}</h1>
             <button
-              className="mt-2 dark:bg-green-500 text-blue-600 hover:underline logo-color font-semibold"
+              className="mt-2 dark:bg-green-500 text-blue-600 hover:underline rounded-xl p-2 logo-color font-semibold"
               type="button"
               onClick={openPhotoModal}
             >
@@ -78,7 +78,7 @@ function Profile() {
           <h2 className="font-semibold text-2xl">Personal Information</h2>
           <div className="flex space-x-2">
             <button
-              className="px-4 py-1 border  dark:bg-green-500 logo-button border-gray-300 rounded-md"
+              className="px-4 py-1 border  dark:bg-green-500 logo-button border-gray-300 rounded-xl"
               type="button"
               onClick={() => {
                 setDetailsVisible(false);
@@ -88,7 +88,7 @@ function Profile() {
               View details
             </button>
             <button
-              className="px-4 py-1 border  dark:bg-green-500 logo-button border-gray-300 rounded-md"
+              className="px-4 py-1 border  dark:bg-green-500 logo-button border-gray-300 rounded-xl"
               type="button"
               onClick={() => openPasswordModal('edit')}
             >
@@ -97,7 +97,7 @@ function Profile() {
           </div>
         </div>
 
-        <div className="p-6 rounded-lg border rounded-3xl">
+        <div className="p-6 rounded-xl border rounded-3xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <span className="block text-sm text-gray-500">Full legal first and middle names</span>
@@ -120,7 +120,7 @@ function Profile() {
 
         {/* Personal Address Section */}
         <h2 className="font-semibold text-2xl mt-6 mb-4">Personal Address</h2>
-        <div className="p-6 rounded-lg border rounded-3xl">
+        <div className="p-6 rounded-xl border rounded-3xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <span className="block text-sm text-gray-500">Address</span>

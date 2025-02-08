@@ -12,17 +12,17 @@ function HeaderWithCloseButton() {
   };
 
   return (
-    <div className="flex justify-between  dark:bg-gray-900  items-center px-6 py-4 bg-white shadow-sm">
+    <div className="flex justify-between  dark:bg-gray-700  items-center px-6 py-4 bg-white shadow-sm">
       <div className="flex items-center">
 
-          <FaPiggyBank className="h-6 w-auto logo" /> &nbsp;
+          <FaPiggyBank className="h-6 w-auto logo dark:text-green-400" /> &nbsp;
 
-        <span className="text-xl font-bold text-green-900">BBANKING</span>
+        <span className="text-xl font-bold text-green-900 dark:text-green-400">BBANKING</span>
       </div>
       {/* Butonul de închidere */}
       <button
         onClick={handleClose}
-        className="text-green-900 hover:text-green-700 focus:outline-none"
+        className="text-green-900 hover:text-green-700 dark:text-green-400 focus:outline-none"
         aria-label="Close"
       >
         <FaTimes className="h-5 w-5" />

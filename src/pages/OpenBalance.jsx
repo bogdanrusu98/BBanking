@@ -54,17 +54,17 @@ function OpenBalance() {
 
   return (
     <div className="p-6 sm:ml-64 flex justify-center ">
-      <div className="max-w-md w-full bg-white p-6 rounded-lg ">
-        <h2 className="text-2xl font-semibold text-center mb-4">Open a balance</h2>
+      <div className="max-w-md w-full bg-white p-6  dark:bg-gray-700 dark:text-gray-400 rounded-xl ">
+        <h2 className="text-2xl font-semibold dark:text-white text-center mb-4">Open a balance</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="currency" className="block text-sm font-medium text-gray-700">Choose currency</label>
+            <label htmlFor="currency" className="block text-sm dark:text-gray-400 font-medium text-gray-700">Choose currency</label>
             <select
               id="currency"
               name="currency"
               value={currency}
               onChange={handleCurrencyChange}
-              className="mt-2 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+              className="mt-2  dark:bg-gray-700 dark:text-gray-400 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
             >
               <option value="">Choose currency...</option>
               <option value="USD"><CurrencyFlag currency='USD' size="sm" className='rounded-lg' />USD - US Dollar</option>

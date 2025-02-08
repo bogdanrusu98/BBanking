@@ -85,7 +85,7 @@ const AllTransactions = () => {
           {txns.map((txn) => (
             <div
               key={txn.id}
-              className="flex items-center  justify-between p-4 border-b hover:bg-gray-400"
+              className="flex items-center  justify-between p-4 hover:bg-gray-400 dark:hover:bg-gray-600 rounded-xl"
             >
 <div className="flex items-center gap-3">
   <div className="bg-gray-200 p-2 rounded-full">
@@ -93,7 +93,7 @@ const AllTransactions = () => {
   </div>
   <div>
     <p className="font-medium">{txn.name}</p>
-    <p className="text-sm text-gray-400 font-semibold">
+    <p className="text-sm text-gray-500 dark:text-gray-300 font-semibold">
       {txn.type === 'sent'
         ? 'Sent'
         : txn.type === 'received'
