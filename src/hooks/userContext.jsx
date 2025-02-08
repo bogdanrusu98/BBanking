@@ -1,8 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { onAuthStateChanged, getAuth } from 'firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { auth, db } from '../firebase.config';
-import { CSSProperties } from "react";
 import PacmanLoader from "react-spinners/PacmanLoader";
 
 const UserContext = createContext();

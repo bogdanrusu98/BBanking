@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaPlus, FaRedo } from 'react-icons/fa';
+import { FaPlus } from 'react-icons/fa';
 import { IoSpeedometerOutline } from "react-icons/io5";
 import { FaCcVisa } from "react-icons/fa6";
 

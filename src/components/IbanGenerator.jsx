@@ -1,5 +1,4 @@
 // src/components/IbanGenerator.jsx
-import React, { useState } from 'react';
 
 function IbanGenerator() {
 

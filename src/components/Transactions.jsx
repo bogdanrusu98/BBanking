@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useUser } from '../hooks/userContext';
-import { FaRegArrowAltCircleUp, FaLandmark, FaRegArrowAltCircleDown, FaExchangeAlt } from 'react-icons/fa';
+import { FaRegArrowAltCircleUp, FaRegArrowAltCircleDown, FaExchangeAlt } from 'react-icons/fa';
 import { db } from '../firebase.config';
 import { collection, query, where, getDocs, limit, orderBy } from 'firebase/firestore';
 import { Link } from 'react-router-dom';

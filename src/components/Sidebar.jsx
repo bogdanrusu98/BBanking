@@ -4,7 +4,6 @@ import { initFlowbite } from 'flowbite';
 import { PiHouseLineLight } from "react-icons/pi";
 import { CiCreditCard1 } from "react-icons/ci";
 import { IoPeopleOutline } from "react-icons/io5";
-import { RiCurrencyLine } from "react-icons/ri";
 import { Link } from 'react-router-dom';
 
 function Sidebar({ isSidebarOpen }) {

@@ -4,8 +4,7 @@ import { useParams, Link } from "react-router-dom";
 
 import { useEffect } from 'react'
 import { initFlowbite } from 'flowbite';
-import { useUser } from '../hooks/userContext';
-import { doc, where, getDoc } from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase.config';
 import { useState } from 'react';
 
@@ -14,7 +13,6 @@ export default function RecipientsItem() {
         initFlowbite()
       }, [])
       
-      const user = useUser()
       const [recipient, setRecipient] = useState(null);
       const { recipientId } = useParams(); // preia id-ul din URL
 

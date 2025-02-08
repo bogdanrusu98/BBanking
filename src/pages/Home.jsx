@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useUser } from '../hooks/userContext';
 import { CiCirclePlus } from 'react-icons/ci';
 import { FaLandmark } from 'react-icons/fa';
-import { VscGraph } from 'react-icons/vsc';
 import { db } from '../firebase.config';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { Link } from 'react-router-dom';

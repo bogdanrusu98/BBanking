@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../firebase.config';
 import { useUser } from '../hooks/userContext';
-import { FiDownload, FiFilter, FiSearch } from 'react-icons/fi';
+import { FiSearch } from 'react-icons/fi';
 
 const AllTransactions = () => {
   const user = useUser();
@@ -31,9 +31,7 @@ const AllTransactions = () => {
       fetchTransactions();
     }
   }, [user]);
-  const filteredTransactions = transactions.filter((txn) =>
-    (txn.name || '').toLowerCase().includes(searchTerm.toLowerCase())
-  );
+
   
 
 

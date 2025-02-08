@@ -2,7 +2,6 @@ import React from 'react'
 import { useEffect } from 'react'
 import { initFlowbite } from 'flowbite';
 import { Link } from 'react-router-dom';
-import logo from '../assets/png/logo.png';
 import { FaPiggyBank } from "react-icons/fa6";
 import { CgProfile } from "react-icons/cg";
 import { BsFiles } from "react-icons/bs";
@@ -50,7 +49,7 @@ function Navbar({ toggleSidebar }) {
     };
 
     fetchNotifications();
-  }, []);
+  }, [user.uid]);
   return (
     <header className="antialiased">
     <nav className="bg-white dark:text-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800 m-4 pb-0">
@@ -59,7 +58,7 @@ function Navbar({ toggleSidebar }) {
           <button
             onClick={toggleSidebar}
             className="text-gray-600 rounded-xl cursor-pointer lg:hidden hover:bg-gray-100 dark:hover:bg-gray-700"
-            data-dropdown-toggle="mobile-sidebar"
+           
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 17 14">
               <path stroke="currentColor" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
@@ -71,17 +70,17 @@ function Navbar({ toggleSidebar }) {
 </Link>
                 
               </div>
-            <div class="flex items-center lg:order-2">
+            <div className="flex items-center lg:order-2">
               
   
-                <button type="button" data-dropdown-toggle="notification-dropdown" class="p-2 mr-1 text-gray-500 rounded-xl hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
-                    <span class="sr-only">View notifications</span>
+                <button type="button" data-dropdown-toggle="notification-dropdown" className="p-2 mr-1 text-gray-500 rounded-xl hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
+                    <span className="sr-only">View notifications</span>
   
-                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 20"><path d="M12.133 10.632v-1.8A5.406 5.406 0 0 0 7.979 3.57.946.946 0 0 0 8 3.464V1.1a1 1 0 0 0-2 0v2.364a.946.946 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C1.867 13.018 0 13.614 0 14.807 0 15.4 0 16 .538 16h12.924C14 16 14 15.4 14 14.807c0-1.193-1.867-1.789-1.867-4.175ZM3.823 17a3.453 3.453 0 0 0 6.354 0H3.823Z"/></svg>
+                    <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 20"><path d="M12.133 10.632v-1.8A5.406 5.406 0 0 0 7.979 3.57.946.946 0 0 0 8 3.464V1.1a1 1 0 0 0-2 0v2.364a.946.946 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C1.867 13.018 0 13.614 0 14.807 0 15.4 0 16 .538 16h12.924C14 16 14 15.4 14 14.807c0-1.193-1.867-1.789-1.867-4.175ZM3.823 17a3.453 3.453 0 0 0 6.354 0H3.823Z"/></svg>
                 </button>
   
-                <div class="hidden overflow-hidden z-50 my-4 max-w-sm text-base list-none bg-white rounded divide-y divide-gray-100 shadow-lg dark:divide-gray-600 dark:bg-gray-700" id="notification-dropdown">
-                    <div class="block py-2 px-4 text-base font-medium text-center text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <div className="hidden overflow-hidden z-50 my-4 max-w-sm text-base list-none bg-white rounded divide-y divide-gray-100 shadow-lg dark:divide-gray-600 dark:bg-gray-700" id="notification-dropdown">
+                    <div className="block py-2 px-4 text-base font-medium text-center text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         Notifications
                     </div>
 
@@ -129,27 +128,27 @@ function Navbar({ toggleSidebar }) {
   </div>
 )}
                   
-                    <a href="#" class="block py-2 text-base font-medium text-center text-gray-900 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:text-white dark:hover:underline">
-                        <div class="inline-flex items-center ">
-                        <svg aria-hidden="true" class="mr-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path></svg>
+                    <Link to="/notifications" className="block py-2 text-base font-medium text-center text-gray-900 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:text-white dark:hover:underline">
+                        <div className="inline-flex items-center ">
+                        <svg aria-hidden="true" className="mr-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd"></path></svg>
                         View all
                         </div>
-                    </a>
+                    </Link>
                 </div>
   
-                <button type="button" class=" hover:bg-gray-100 dark:hover:bg-gray-600 flex items-center mx-3 text-sm  rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="dropdown">
-  <span class="sr-only">Open user menu</span>
-  <img class="w-12 h-12 rounded-full" src={user.photoURL ? user.photoURL : "https://flowbite.com/docs/images/people/profile-picture-2.jpg"} alt="user photo" />
-  <span class="hidden-xs hidden-sm hidden-md m-l-1 title-5 mx-2 font-semibold	">{user.firstName + ' ' + user.lastName}</span>
-  <svg id="arrow" class="w-4 h-4 ml-1 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                <button type="button" className=" hover:bg-gray-100 dark:hover:bg-gray-600 flex items-center mx-3 text-sm  rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="dropdown">
+  <span className="sr-only">Open user menu</span>
+  <img className="w-12 h-12 rounded-full" src={user.photoURL ? user.photoURL : "https://flowbite.com/docs/images/people/profile-picture-2.jpg"} alt="user" />
+  <span className="hidden-xs hidden-sm hidden-md m-l-1 title-5 mx-2 font-semibold	">{user.firstName + ' ' + user.lastName}</span>
+  <svg id="arrow" className="w-4 h-4 ml-1 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
   </svg>
 </button>
   
-                <div class="hidden z-50 my-4 w-56 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown">
-                    <div class="py-3 px-4">
-                        <span class="block text-sm font-semibold text-gray-900 dark:text-white">{user.firstName + ' ' + user.lastName}</span>
-                        <span class="block text-sm text-gray-500 truncate dark:text-gray-400">{user.email}</span>
+                <div className="hidden z-50 my-4 w-56 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown">
+                    <div className="py-3 px-4">
+                        <span className="block text-sm font-semibold text-gray-900 dark:text-white">{user.firstName + ' ' + user.lastName}</span>
+                        <span className="block text-sm text-gray-500 truncate dark:text-gray-400">{user.email}</span>
                     </div>
                     <ul className="py-2 text-gray-800 dark:text-gray-100" aria-labelledby="dropdown">
   <li>
@@ -171,16 +170,16 @@ function Navbar({ toggleSidebar }) {
     </Link>
   </li>
   <li>
-    <a href="#" className="flex items-center py-2 px-4 text-base hover:bg-gray-50 dark:hover:bg-gray-700">
+    <Link to="/help" className="flex items-center py-2 px-4 text-base hover:bg-gray-50 dark:hover:bg-gray-700">
       <IoMdHelpCircleOutline className="mr-3 text-xl" />
       <span>Help</span>
-    </a>
+    </Link>
   </li>
   <li>
-    <a href="#" className="flex items-center py-2 px-4 text-base hover:bg-gray-50 dark:hover:bg-gray-700">
+    <button href="#" className="flex items-center py-2 px-4 text-base hover:bg-gray-50 dark:hover:bg-gray-700">
       <IoIosLogOut className="mr-3 text-xl" />
       <span onClick={handleLogout}>LogOut</span>
-    </a>
+    </button>
   </li>
 </ul>
 
