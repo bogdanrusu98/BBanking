@@ -1,6 +1,6 @@
 import './App.css';
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, useLocation, Outlet } from 'react-router-dom';
 import Index from './pages/Index';
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
@@ -21,24 +21,45 @@ import Training from './pages/Training';
 import TrainingGuard from './components/TrainingGuard';
 import Balance from './pages/Balance';
 import AddMoney from './pages/AddMoney';
-import SendMoney from './pages/SendMoney'
+import SendMoney from './pages/SendMoney';
 import Cards from './pages/Cards';
 import Recipients from './pages/Recipients';
 import RecipientsItem from './pages/RecipientsItem';
 import AddRecipient from './pages/AddRecipient';
 import AllTransactions from './pages/AllTransactions';
 import Settings from './pages/Settings';
+
+// 📦 Layout definit în App.js
 function Layout() {
   const location = useLocation();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  // Verificăm dacă ruta curentă este "/sign-in", "/sign-up", "/" sau "/edit-personal-details"
-  const isAuthRoute = location.pathname === '/sign-in' || location.pathname === '/balances/add-money' || location.pathname === '/recipients/add' || location.pathname === '/sign-up' || location.pathname === '/' || location.pathname === '/edit-personal-details' || location.pathname === '/training' || location.pathname === '/open-balance';
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const isAuthRoute = [
+    '/sign-in',
+    '/balances/add-money',
+    '/recipients/add',
+    '/sign-up',
+    '/',
+    '/edit-personal-details',
+    '/training',
+    '/open-balance',
+  ].includes(location.pathname);
 
   return (
     <>
-      {!isAuthRoute && <Navbar />}
-      {!isAuthRoute && <Sidebar />}
-      {isAuthRoute && location.pathname !== '/' && <SecondaryNavbar />}
+      {!isAuthRoute && <Navbar toggleSidebar={toggleSidebar} />}
+      <div className="lg:flex">
+        {!isAuthRoute && <Sidebar isSidebarOpen={isSidebarOpen} />}
+        
+        <main className="flex-1">
+        {isAuthRoute && location.pathname !== '/' && <SecondaryNavbar />}
+        <Outlet />
+        </main>
+      </div>
     </>
   );
 }
@@ -47,69 +68,72 @@ function App() {
   const user = useUser();
 
   return (
-    <div className={`container mx-auto px-3 pb-12`}>
+    <div className="container mx-auto px-3 pb-12">
       <Router>
         <UserProvider>
-          <Layout />
           <Routes>
-            <Route path="/" element={
-              <ProtectedRoute>
-                <Index />
-              </ProtectedRoute>
-            } />
-            <Route path="/sign-in" element={<SignIn />} />
-            <Route path="/sign-up" element={<SignUp />} />
-            <Route path="/training" element={<Training />} />
-            <Route path="/open-balance" element={<OpenBalance />} />
-            <Route path="/recipients" element={<Recipients />} />
-            <Route path={'/recipients/:recipientId'} element={<RecipientsItem />} />
-            <Route path="/cards" element={<Cards />} />
-            <Route path="/recipients/add" element={<AddRecipient />} />
-            <Route path="/all-transactions" element={<AllTransactions />} />
-            <Route path="/settings" element={<Settings />} />
-            {/* Pagini protejate de TrainingGuard */}
-            <Route path="/home" element={
-              <TrainingGuard>
-                <PrivateRoute>
-                  <Home />
-                </PrivateRoute>
-              </TrainingGuard>
-            } />
-            <Route path="/settings/profile" element={
-              <TrainingGuard>
-                <PrivateRoute>
-                  <Profile />
-                </PrivateRoute>
-              </TrainingGuard>
-            } />
-            <Route path="/edit-personal-details" element={
-              <TrainingGuard>
-                <PrivateRoute>
-                  <EditPersonalDetails />
-                </PrivateRoute>
-              </TrainingGuard>
-            } />
-              <Route path={`/balances/:accountId`} element={
-              <TrainingGuard>
-                <PrivateRoute>
-                  <Balance />
-                </PrivateRoute>
-              </TrainingGuard>
-            } />
-                 <Route path={`/balances/add-money`} element={
-              <TrainingGuard>
-                <PrivateRoute>
-                  <AddMoney />
-                </PrivateRoute>
-              </TrainingGuard>
-            } />
-                   <Route path={`/balances/send-money`} element={
-              <TrainingGuard>
-                <PrivateRoute>
-                  <SendMoney />
-                </PrivateRoute>
-              </TrainingGuard>
-            } />
+            {/* 🏠 Layout ca wrapper pentru toate rutele */}
+            <Route path="/" element={<Layout />}>
+              <Route index element={
+                <ProtectedRoute>
+                  <Index />
+                </ProtectedRoute>
+              } />
+              <Route path="/sign-in" element={<SignIn />} />
+              <Route path="/sign-up" element={<SignUp />} />
+              <Route path="/training" element={<Training />} />
+              <Route path="/open-balance" element={<OpenBalance />} />
+              <Route path="/recipients" element={<Recipients />} />
+              <Route path="/recipients/:recipientId" element={<RecipientsItem />} />
+              <Route path="/cards" element={<Cards />} />
+              <Route path="/recipients/add" element={<AddRecipient />} />
+              <Route path="/all-transactions" element={<AllTransactions />} />
+              <Route path="/settings" element={<Settings />} />
+
+              {/* 🛡️ Pagini protejate */}
+              <Route path="/home" element={
+                <TrainingGuard>
+                  <PrivateRoute>
+                    <Home />
+                  </PrivateRoute>
+                </TrainingGuard>
+              } />
+              <Route path="/settings/profile" element={
+                <TrainingGuard>
+                  <PrivateRoute>
+                    <Profile />
+                  </PrivateRoute>
+                </TrainingGuard>
+              } />
+              <Route path="/edit-personal-details" element={
+                <TrainingGuard>
+                  <PrivateRoute>
+                    <EditPersonalDetails />
+                  </PrivateRoute>
+                </TrainingGuard>
+              } />
+              <Route path="/balances/:accountId" element={
+                <TrainingGuard>
+                  <PrivateRoute>
+                    <Balance />
+                  </PrivateRoute>
+                </TrainingGuard>
+              } />
+              <Route path="/balances/add-money" element={
+                <TrainingGuard>
+                  <PrivateRoute>
+                    <AddMoney />
+                  </PrivateRoute>
+                </TrainingGuard>
+              } />
+              <Route path="/balances/send-money" element={
+                <TrainingGuard>
+                  <PrivateRoute>
+                    <SendMoney />
+                  </PrivateRoute>
+                </TrainingGuard>
+              } />
+            </Route>
           </Routes>
         </UserProvider>
       </Router>

@@ -6,8 +6,8 @@ import { FaCcVisa } from "react-icons/fa6";
 
 function Cards() {
   return (
-    <div className="p-4 sm:ml-64">
-      <div className="p-4 rounded-lg">
+    <div className="py-4">
+      <div className="rounded-lg">
         {/* Header cu titlu și butoane */}
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-3xl font-semibold dark:text-white">Cards</h1>

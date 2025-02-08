@@ -58,8 +58,8 @@ function Recipients() {
   });
 
   return (
-    <div className="p-4 sm:ml-64">
-      <div className="p-4 rounded-lg ">
+    <div className="py-4">
+      <div className="rounded-lg ">
       <div className="mb-6">
       <h1 className="text-2xl font-bold mb-4 dark:text-white">Recipients</h1>
 

@@ -40,7 +40,7 @@ function Profile() {
   };
 
   return (
-    <div className="p-6 sm:ml-64">
+    <div className="">
       <ProfileCompletionBadge />
       <div className="max-w-4xl mx-auto bg-white dark:text-white dark:bg-gray-800 p-6 rounded-lg">
         {/* Header - Profile Image and Edit Button */}

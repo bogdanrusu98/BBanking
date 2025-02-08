@@ -93,8 +93,8 @@ function Home() {
   }, [accounts, exchangeRates]);
 
   return (
-    <div className="p-4 sm:ml-64  dark:bg-gray-800 dark:text-white">
-      <div className="p-4 rounded-lg ">
+    <div className=" dark:bg-gray-800 dark:text-white">
+      <div className="rounded-lg ">
         {/* Total Balance Section */}
         <div className="mb-6">
           <h2 className="text-xl font-semibold">Total balance</h2>

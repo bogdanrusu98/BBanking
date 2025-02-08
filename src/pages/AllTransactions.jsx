@@ -55,7 +55,7 @@ const AllTransactions = () => {
   
 
   return (
-    <div className="max-w-3xl mx-auto p-4">
+    <div className="max-w-3xl mx-auto ">
       <div className="flex items-center justify-between dark:text-gray-400 mb-4">
         <h1 className="text-2xl font-bold">Transactions</h1>
         <div className="flex gap-2">
