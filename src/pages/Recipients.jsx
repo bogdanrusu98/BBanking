@@ -59,7 +59,7 @@ function Recipients() {
 
   return (
     <div className="py-4">
-      <div className="rounded-lg ">
+      <div className="rounded-xl ">
       <div className="mb-6">
       <h1 className="text-2xl font-bold mb-4 dark:text-white">Recipients</h1>
 
@@ -86,7 +86,7 @@ function Recipients() {
     <Link
       to={`/recipients/${recipient.id}`}
       key={index}
-      className="flex items-center dark:text-white  p-4 rounded-lg cursor-pointer hover:shadow-md transition"
+      className="flex items-center dark:text-white  p-4 rounded-xl cursor-pointer hover:shadow-md transition"
     >
       <div className="flex items-center justify-center w-10 h-10 bg-gray-200 rounded-full text-black font-bold relative ">
         {getInitials(recipient.accountHolderName)}<CurrencyFlag currency={recipient.currency} size="md" className="bottom-0 left-7 absolute rounded-full w-3.5 h-3.5" />

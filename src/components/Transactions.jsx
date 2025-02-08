@@ -49,7 +49,7 @@ function Transactions() {
        <Link to="/all-transactions" className="text-green-600 hover:underline">See all</Link>
      </div>
      <div className="space-y-4">
-       {transactions.map((transaction, index) => (
+       {(transactions.length > 0) ? transactions.map((transaction, index) => (
          <div key={index} className="flex items-center  dark:bg-gray-700 space-x-4 p-4 bg-white rounded-xl shadow-lg">
            <div className="text-gray-500">
            {(transaction.type === 'received' || transaction.type === 'deposit') && (
@@ -80,7 +80,7 @@ transaction.type === 'received' || transaction.type === 'deposit'
              {transaction.amount} {transaction.currency}
            </div>
          </div>
-       ))}
+       )) : 'No transactions found.'}
      </div>
    </div>
 

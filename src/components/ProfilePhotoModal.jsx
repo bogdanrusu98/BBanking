@@ -55,9 +55,9 @@ function ProfilePhotoModal({ isOpen, onClose }) {
 
   return (
     <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center z-50">
-      <div className="bg-white  dark:bg-gray-800 dark:text-white rounded-lg p-6 max-w-md w-full">
+      <div className="bg-white  dark:bg-gray-800 dark:text-white rounded-xl p-6 max-w-md w-full">
         <h2 className="text-lg font-semibold mb-4">Add a personal account photo</h2>
-        <div className="p-4 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center">
+        <div className="p-4 border-2 border-dashed border-gray-300 rounded-xl flex flex-col items-center">
           <input
             type="file"
             accept="image/*"
@@ -89,7 +89,7 @@ function ProfilePhotoModal({ isOpen, onClose }) {
         </p>
           <button
             onClick={onClose}
-            className="mr-2 px-4  dark:bg-gray-500 py-2 border border-gray-300 logo-color font-semibold rounded-md w-full"
+            className="mr-2 px-4  dark:bg-gray-500 py-2 border border-gray-300 logo-color font-semibold rounded-xl w-full"
           >
             Cancel
           </button>

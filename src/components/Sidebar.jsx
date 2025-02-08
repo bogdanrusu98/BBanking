@@ -41,12 +41,12 @@ function Sidebar({ isSidebarOpen }) {
       <span className="ml-3 text-base">Recipients</span>
     </Link>
   </li>
-  <li>
+  {/* <li>
     <a href="#" className="flex items-center p-2 text-gray-900 rounded-xl dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 group">
       <RiCurrencyLine className="text-xl text-gray-500 group-hover:text-green-500 dark:group-hover:text-white" />
       <span className="ml-3 text-base">Payments</span>
     </a>
-  </li>
+  </li> */}
 </ul>
 
    </div>

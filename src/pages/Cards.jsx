@@ -7,7 +7,7 @@ import { FaCcVisa } from "react-icons/fa6";
 function Cards() {
   return (
     <div className="py-4">
-      <div className="rounded-lg">
+      <div className="rounded-xl">
         {/* Header cu titlu și butoane */}
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-3xl font-semibold dark:text-white">Cards</h1>
@@ -27,7 +27,7 @@ function Cards() {
         <h2 className="text-lg font-semibold mb-2 dark:text-white">Your cards</h2>
         <div className="space-y-4">
           {/* Card nou */}
-          <div className="flex items-center  dark:bg-gray-600 p-4 rounded-lg  hover:bg-gray-100 cursor-pointer">
+          <div className="flex items-center rounded-xl  dark:bg-gray-600 p-4 rounded-xl  hover:bg-gray-100 cursor-pointer">
             <div className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center mr-4">
               <FaPlus className="text-gray-600" />
             </div>
@@ -38,7 +38,7 @@ function Cards() {
           </div>
 
           {/* Card digital */}
-          <div className="flex items-center p-4 rounded-lg hover:bg-gray-600 cursor-pointer">
+          <div className="flex items-center p-4 rounded-xl hover:bg-gray-600 cursor-pointer">
             <FaCcVisa className="w-12 dark:text-white h-10 rounded-full flex items-center justify-center mr-4">
             </FaCcVisa>
             <div>

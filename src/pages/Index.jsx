@@ -30,9 +30,9 @@ function Index() {
   </a>
   <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
     <Link to='/sign-up'>
-      <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Get started</button>
+      <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Get started</button>
       </Link>
-      <button data-collapse-toggle="navbar-cta" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-cta" aria-expanded="false">
+      <button data-collapse-toggle="navbar-cta" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-xl md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-cta" aria-expanded="false">
         <span class="sr-only">Open main menu</span>
         <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
@@ -40,7 +40,7 @@ function Index() {
     </button>
   </div>
   <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
-    <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+    <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-xl bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
       <li>
         <a href="#" class="block py-2 px-3 md:p-0 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:dark:text-blue-500" aria-current="page">Home</a>
       </li>
@@ -77,7 +77,7 @@ function Index() {
             <img
               src="https://via.placeholder.com/500x300"
               alt="Transferuri rapide"
-              className="w-full rounded-lg shadow-xl"
+              className="w-full rounded-xl shadow-xl"
             />
           </div>
         </div>
@@ -90,7 +90,7 @@ function Index() {
             De ce să alegi serviciul nostru?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div className="bg-white rounded-lg shadow-lg p-8 text-center hover:shadow-2xl transition-shadow duration-300">
+            <div className="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-2xl transition-shadow duration-300">
               <div className="bg-blue-100 rounded-full p-4 inline-block mb-4">
                 <svg className="h-8 w-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-6 12h.01M12 15v2m6 0v2m6 0v-5.382a2 2 0 00-.894-1.789l-1.618-1.07A4 4 0 0018 8.618V8a6 6 0 00-6-6 6 6 0 00-6 6v.618a4 4 0 00-.488 2.141L3.894 11.829A2 2 0 003 13.618V19h18z"></path>
@@ -99,7 +99,7 @@ function Index() {
               <h3 className="text-2xl font-semibold mb-2">Transferuri rapide</h3>
               <p className="text-gray-600">Trimite bani în câteva minute către oricine, oriunde în lume.</p>
             </div>
-            <div className="bg-white rounded-lg shadow-lg p-8 text-center hover:shadow-2xl transition-shadow duration-300">
+            <div className="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-2xl transition-shadow duration-300">
               <div className="bg-blue-100 rounded-full p-4 inline-block mb-4">
                 <svg className="h-8 w-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-3.866 0-7 1.79-7 4 0 1.15.88 2.179 2.185 3.053a8.787 8.787 0 005.815 2.44v1.948c0 .61.4 1.159 1 1.159s1-.549 1-1.159v-1.948a8.787 8.787 0 005.815-2.44C18.12 14.179 19 13.15 19 12c0-2.21-3.134-4-7-4z"></path>
@@ -108,7 +108,7 @@ function Index() {
               <h3 className="text-2xl font-semibold mb-2">Cursuri de schimb reale</h3>
               <p className="text-gray-600">Fără taxe ascunse, doar cursuri de schimb reale.</p>
             </div>
-            <div className="bg-white rounded-lg shadow-lg p-8 text-center hover:shadow-2xl transition-shadow duration-300">
+            <div className="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-2xl transition-shadow duration-300">
               <div className="bg-blue-100 rounded-full p-4 inline-block mb-4">
                 <svg className="h-8 w-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>

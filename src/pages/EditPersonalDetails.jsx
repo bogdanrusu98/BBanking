@@ -92,7 +92,7 @@ const handleChange = (e) => {
   
   return (
     <div className="p-6 sm:ml-64 ">
-      <div className="max-w-lg mx-auto bg-white  dark:bg-gray-800 dark:text-white p-6 rounded-lg shadow-md">
+      <div className="max-w-lg mx-auto bg-white  dark:bg-gray-800 dark:text-white p-6 rounded-xl shadow-md">
         <h2 className="text-2xl font-semibold mb-6">Tell us about yourself</h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Country of residence */}
@@ -102,7 +102,7 @@ const handleChange = (e) => {
               name="country"
               value={formData.country}
               onChange={handleChange}
-              className="mt-1  dark:bg-gray-800 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              className="mt-1  dark:bg-gray-800 block w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             >
               <option value="">Select country</option>
               <option value="Romania">Romania</option>
@@ -122,7 +122,7 @@ const handleChange = (e) => {
                 value={formData.firstName}
                 onChange={handleChange}
                 disabled
-                className="input-disabled  dark:bg-gray-800 dark:text-gray-400 mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                className="input-disabled  dark:bg-gray-800 dark:text-gray-400 mt-1 block w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
             <div>
@@ -133,7 +133,7 @@ const handleChange = (e) => {
                 disabled
                 value={formData.lastName}
                 onChange={handleChange}
-                className="input-disabled  dark:bg-gray-800 dark:text-gray-400 mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                className="input-disabled  dark:bg-gray-800 dark:text-gray-400 mt-1 block w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
           </div>
@@ -148,7 +148,7 @@ const handleChange = (e) => {
                 placeholder="Month"
                 value={formData.dateOfBirth.month || ''}
                 onChange={handleChange}
-                className="mt-1 block  dark:bg-gray-800 dark:text-gray-400 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                className="mt-1 block  dark:bg-gray-800 dark:text-gray-400 w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
               <input
                 type="number"
@@ -156,7 +156,7 @@ const handleChange = (e) => {
                 placeholder="Day"
                 value={formData.dateOfBirth.day || ''}
                 onChange={handleChange}
-                className="mt-1 block w-full  dark:bg-gray-800 dark:text-gray-400 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                className="mt-1 block w-full  dark:bg-gray-800 dark:text-gray-400 px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
               <input
                 type="number"
@@ -164,7 +164,7 @@ const handleChange = (e) => {
                 placeholder="Year"
                 value={formData.dateOfBirth.year || ''}
                 onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2  dark:bg-gray-800 dark:text-gray-400 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                className="mt-1 block w-full px-3 py-2  dark:bg-gray-800 dark:text-gray-400 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
           </div>
@@ -177,7 +177,7 @@ const handleChange = (e) => {
               name="phoneNumber"
               value={formData.phoneNumber}
               onChange={handleChange}
-              className="mt-1 block w-full dark:bg-gray-800 dark:text-gray-400 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              className="mt-1 block w-full dark:bg-gray-800 dark:text-gray-400 px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             />
             <button
               type="button"
@@ -196,7 +196,7 @@ const handleChange = (e) => {
               name="address"
               value={formData.address}
               onChange={handleChange}
-              className="mt-1 block  dark:bg-gray-800 dark:text-gray-400 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              className="mt-1 block  dark:bg-gray-800 dark:text-gray-400 w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
 
@@ -207,7 +207,7 @@ const handleChange = (e) => {
               name="city"
               value={formData.city}
               onChange={handleChange}
-              className="mt-1 block   dark:bg-gray-800 dark:text-gray-400 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              className="mt-1 block   dark:bg-gray-800 dark:text-gray-400 w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
 
@@ -218,7 +218,7 @@ const handleChange = (e) => {
               name="postalCode"
               value={formData.postalCode}
               onChange={handleChange}
-              className="mt-1 block  dark:bg-gray-800 dark:text-gray-400 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              className="mt-1 block  dark:bg-gray-800 dark:text-gray-400 w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
 
@@ -226,7 +226,7 @@ const handleChange = (e) => {
           <div className="flex justify-end">
             <button
               type="submit"
-              className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition duration-300"
+              className="bg-green-500 text-white px-4 py-2 rounded-xl hover:bg-green-600 transition duration-300"
             >
               Save
             </button>

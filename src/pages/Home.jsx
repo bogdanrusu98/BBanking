@@ -94,7 +94,7 @@ function Home() {
 
   return (
     <div className=" dark:bg-gray-800 dark:text-white">
-      <div className="rounded-lg ">
+      <div className="rounded-xl ">
         {/* Total Balance Section */}
         <div className="mb-6">
           <h2 className="text-xl font-semibold">Total balance</h2>
@@ -133,7 +133,7 @@ function Home() {
                     <span className="ml-1">.. {account.iban.slice(-4)}</span>
                   </div>
                   <div className="text-2xl font-bold">
-                    {account.balance.toFixed(2)}
+                    {new Intl.NumberFormat('en-US').format(account.balance.toFixed(2))} {account.currency}
                   </div>
                 </div>
               </Link>

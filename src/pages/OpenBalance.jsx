@@ -64,10 +64,10 @@ function OpenBalance() {
               name="currency"
               value={currency}
               onChange={handleCurrencyChange}
-              className="mt-2  dark:bg-gray-700 dark:text-gray-400 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+              className="mt-2  dark:bg-gray-700 dark:text-gray-400 w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
             >
               <option value="">Choose currency...</option>
-              <option value="USD"><CurrencyFlag currency='USD' size="sm" className='rounded-lg' />USD - US Dollar</option>
+              <option value="USD"><CurrencyFlag currency='USD' size="sm" className='rounded-xl' />USD - US Dollar</option>
               <option value="EUR">EUR - Euro</option>
               <option value="RON">RON - Romanian Leu</option>
               <option value="GBP">GBP - British Pound</option>

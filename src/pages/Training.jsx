@@ -37,7 +37,7 @@ function Training() {
 
   return (
     <div className="p-6 sm:ml-64">
-      <div className="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md">
+      <div className="max-w-3xl mx-auto bg-white p-6 rounded-xl shadow-md">
         <h1 className="text-3xl font-semibold mb-6 text-center">Welcome to Your Banking App Training</h1>
         {currentStep === 1 && (
           <div>
@@ -78,14 +78,14 @@ function Training() {
         <div className="flex justify-between mt-6">
           <button
             onClick={() => setCurrentStep(currentStep - 1)}
-            className={`px-4 py-2 bg-gray-200 text-gray-700 rounded-md ${currentStep === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+            className={`px-4 py-2 bg-gray-200 text-gray-700 rounded-xl ${currentStep === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
             disabled={currentStep === 1}
           >
             Previous
           </button>
           <button
             onClick={handleNextStep}
-            className="px-4 py-2 bg-blue-500 text-white rounded-md"
+            className="px-4 py-2 bg-blue-500 text-white rounded-xl"
           >
             {currentStep < totalSteps ? 'Next' : 'Finish'}
           </button>

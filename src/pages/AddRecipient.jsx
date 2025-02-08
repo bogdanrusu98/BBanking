@@ -63,7 +63,7 @@ const AddRecipient = () => {
       }
     };
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 dark:bg-gray-700 dark:text-gray-400 bg-white rounded-lg shadow-lg">
+    <div className="max-w-md mx-auto mt-10 p-6 dark:bg-gray-700 dark:text-gray-400 bg-white rounded-xl shadow-lg">
       <h2 className="text-2xl font-bold mb-4 text-center">Add a new recipient</h2>
       <form onSubmit={handleSubmit} className="space-y-4 ">
         <div>

@@ -60,7 +60,7 @@ export default function RecipientsItem() {
 
   return (
     <div className="sm:ml-64">
-    <div className="p-4 rounded-lg ">
+    <div className="p-4 rounded-xl ">
     <div className="mb-6  dark:bg-gray-800 dark:text-gray-400">
       {recipient ? (
                 <div>

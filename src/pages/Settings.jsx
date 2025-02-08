@@ -1,25 +1,7 @@
-import { useEffect, useState } from 'react';
-import { initFlowbite } from 'flowbite';
 import { FaSun, FaMoon } from 'react-icons/fa';
-
+import { useTheme } from '../hooks/ThemeContext';
 const Settings = () => {
-  const [theme, setTheme] = useState(
-    localStorage.getItem('theme') || 'light'
-  );
-
-  useEffect(() => {
-    initFlowbite();
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-    localStorage.setItem('theme', theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
-  };
+  const { theme, toggleTheme } = useTheme(); // Folosim hook-ul pentru a obține tema și funcția de toggle
 
   return (
     <div className="p-6 max-w-md mx-auto bg-white dark:bg-gray-700 rounded-xl shadow-md space-y-4">

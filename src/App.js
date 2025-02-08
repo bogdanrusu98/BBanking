@@ -28,6 +28,8 @@ import RecipientsItem from './pages/RecipientsItem';
 import AddRecipient from './pages/AddRecipient';
 import AllTransactions from './pages/AllTransactions';
 import Settings from './pages/Settings';
+import { ThemeProvider } from './hooks/ThemeContext';
+import StatementsPage from './pages/StatementsPage';
 
 // 📦 Layout definit în App.js
 function Layout() {
@@ -54,88 +56,139 @@ function Layout() {
       {!isAuthRoute && <Navbar toggleSidebar={toggleSidebar} />}
       <div className="lg:flex">
         {!isAuthRoute && <Sidebar isSidebarOpen={isSidebarOpen} />}
-        
+
         <main className="flex-1">
-        {isAuthRoute && location.pathname !== '/' && <SecondaryNavbar />}
-        <Outlet />
+          {isAuthRoute && location.pathname !== '/' && <SecondaryNavbar />}
+          <Outlet />
         </main>
       </div>
     </>
   );
 }
-
 function App() {
   const user = useUser();
 
   return (
     <div className="container mx-auto px-3 pb-12">
+      {/* Asigură-te că Router este la un nivel mai înalt decât provider-ele */}
       <Router>
-        <UserProvider>
-          <Routes>
-            {/* 🏠 Layout ca wrapper pentru toate rutele */}
-            <Route path="/" element={<Layout />}>
-              <Route index element={
-                <ProtectedRoute>
-                  <Index />
-                </ProtectedRoute>
-              } />
-              <Route path="/sign-in" element={<SignIn />} />
-              <Route path="/sign-up" element={<SignUp />} />
-              <Route path="/training" element={<Training />} />
-              <Route path="/open-balance" element={<OpenBalance />} />
-              <Route path="/recipients" element={<Recipients />} />
-              <Route path="/recipients/:recipientId" element={<RecipientsItem />} />
-              <Route path="/cards" element={<Cards />} />
-              <Route path="/recipients/add" element={<AddRecipient />} />
-              <Route path="/all-transactions" element={<AllTransactions />} />
-              <Route path="/settings" element={<Settings />} />
+        <ThemeProvider>
+          <UserProvider>
+            <Routes>
+              {/* 🏠 Layout ca wrapper pentru toate rutele */}
+              <Route path="/" element={<Layout />}>
+                <Route index element={
+                  <ProtectedRoute>
+                    <Index />
+                  </ProtectedRoute>
+                } />
+                <Route path="/sign-in" element={<SignIn />} />
+                <Route path="/sign-up" element={<SignUp />} />
+                <Route path="/training" element={<Training />} />
+                <Route path="/open-balance" element={
+                  <TrainingGuard>
+                    <PrivateRoute>
+                      <OpenBalance />
+                    </PrivateRoute>
+                  </TrainingGuard>
+                  } />
+                <Route path="/recipients" element={
+                  <TrainingGuard>
+                    <PrivateRoute>
+                      <Recipients />
+                    </PrivateRoute>
+                  </TrainingGuard>
+                  } />
+                  <Route path="/statements" element={
+                  <TrainingGuard>
+                    <PrivateRoute>
+                      <StatementsPage />
+                    </PrivateRoute>
+                  </TrainingGuard>
+                  } />
+                <Route path="/recipients/:recipientId" element={
+                   <TrainingGuard>
+                    <PrivateRoute>
+                      <RecipientsItem />
+                    </PrivateRoute>
+                  </TrainingGuard>
+                  } />
+                <Route path="/cards" element={
+                  <TrainingGuard>
+                    <PrivateRoute>
+                      <Cards />
+                    </PrivateRoute>
+                  </TrainingGuard>
+                  } />
+                <Route path="/recipients/add" element={
+                  <TrainingGuard>
+                    <PrivateRoute>
+                      <AddRecipient />
+                    </PrivateRoute>
+                  </TrainingGuard>
+                  } />
+                <Route path="/all-transactions" element={
+                  <TrainingGuard>
+                  <PrivateRoute>
+                    <AllTransactions />
+                  </PrivateRoute>
+                </TrainingGuard>
+                  } />
+                <Route path="/settings" element={
+                  <TrainingGuard>
+                      <PrivateRoute>
+                    <Settings />
+                    </PrivateRoute>
+                  </TrainingGuard>
+                  } />
 
-              {/* 🛡️ Pagini protejate */}
-              <Route path="/home" element={
-                <TrainingGuard>
-                  <PrivateRoute>
-                    <Home />
-                  </PrivateRoute>
-                </TrainingGuard>
-              } />
-              <Route path="/settings/profile" element={
-                <TrainingGuard>
-                  <PrivateRoute>
-                    <Profile />
-                  </PrivateRoute>
-                </TrainingGuard>
-              } />
-              <Route path="/edit-personal-details" element={
-                <TrainingGuard>
-                  <PrivateRoute>
-                    <EditPersonalDetails />
-                  </PrivateRoute>
-                </TrainingGuard>
-              } />
-              <Route path="/balances/:accountId" element={
-                <TrainingGuard>
-                  <PrivateRoute>
-                    <Balance />
-                  </PrivateRoute>
-                </TrainingGuard>
-              } />
-              <Route path="/balances/add-money" element={
-                <TrainingGuard>
-                  <PrivateRoute>
-                    <AddMoney />
-                  </PrivateRoute>
-                </TrainingGuard>
-              } />
-              <Route path="/balances/send-money" element={
-                <TrainingGuard>
-                  <PrivateRoute>
-                    <SendMoney />
-                  </PrivateRoute>
-                </TrainingGuard>
-              } />
-            </Route>
-          </Routes>
-        </UserProvider>
+                {/* 🛡️ Pagini protejate */}
+                <Route path="/home" element={
+                  <TrainingGuard>
+                    <PrivateRoute>
+                      <Home />
+                    </PrivateRoute>
+                  </TrainingGuard>
+                } />
+                <Route path="/settings/profile" element={
+                  <TrainingGuard>
+                    <PrivateRoute>
+                      <Profile />
+                    </PrivateRoute>
+                  </TrainingGuard>
+                } />
+                <Route path="/edit-personal-details" element={
+                  <TrainingGuard>
+                    <PrivateRoute>
+                      <EditPersonalDetails />
+                    </PrivateRoute>
+                  </TrainingGuard>
+                } />
+                <Route path="/balances/:accountId" element={
+                  <TrainingGuard>
+                    <PrivateRoute>
+                      <Balance />
+                    </PrivateRoute>
+                  </TrainingGuard>
+                } />
+                <Route path="/balances/add-money" element={
+                  <TrainingGuard>
+                    <PrivateRoute>
+                      <AddMoney />
+                    </PrivateRoute>
+                  </TrainingGuard>
+                } />
+                <Route path="/balances/send-money" element={
+                  <TrainingGuard>
+                    <PrivateRoute>
+                      <SendMoney />
+                    </PrivateRoute>
+                  </TrainingGuard>
+                } />
+              </Route>
+            </Routes>
+          </UserProvider>
+        </ThemeProvider>
       </Router>
       <ToastContainer />
     </div>
@@ -143,3 +196,4 @@ function App() {
 }
 
 export default App;
+

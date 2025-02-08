@@ -61,6 +61,11 @@ function AddMoney() {
       return;
     }
 
+    if(amount < 0) {
+      toast.error("Amount has to be positive");
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -123,7 +128,7 @@ function AddMoney() {
 
   return (
     <div className="p-6 sm:ml-64">
-      <div className="max-w-lg  dark:bg-gray-800 dark:text-gray-400 mx-auto bg-white p-6 rounded-lg shadow-md">
+      <div className="max-w-lg  dark:bg-gray-800 dark:text-gray-400 mx-auto bg-white p-6 rounded-xl shadow-md">
         <h2 className="text-2xl font-semibold mb-6 text-center">Add money</h2>
 
         {/* Input for amount */}
@@ -157,7 +162,7 @@ function AddMoney() {
         {/* Payment method */}
         <div className="mb-4">
           <h3 className="font-medium text-gray-700 dark:text-gray-400">Paying with</h3>
-          <div className="flex items-center bg-gray-100  dark:bg-gray-800 dark:text-gray-400 p-4 rounded-lg mt-2">
+          <div className="flex items-center bg-gray-100  dark:bg-gray-800 dark:text-gray-400 p-4 rounded-xl mt-2">
             <FaCcVisa className="text-blue-500 w-10 h-10" />
             <div className="ml-4">
               <p className="font-medium">Debit card *{cardNumber}</p>
@@ -168,7 +173,7 @@ function AddMoney() {
         </div>
 
         {/* Fees section */}
-        <div className="mb-6 bg-gray-50 p-4  dark:bg-gray-800 dark:text-gray-400 rounded-lg">
+        <div className="mb-6 bg-gray-50 p-4  dark:bg-gray-800 dark:text-gray-400 rounded-xl">
           <div className="flex justify-between mb-2">
             <span className="text-gray-500">Debit card fee</span>
             <span className="text-gray-700">{fees.cardFee.toFixed(2)} RON</span>
@@ -190,7 +195,7 @@ function AddMoney() {
         {/* Continue button */}
         <button
           onClick={handleSubmit}
-          className="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition"
+          className="w-full bg-green-500 text-white py-2 rounded-xl hover:bg-green-600 transition"
           disabled={isSubmitting}
         >
           {isSubmitting ? 'Processing...' : 'Continue'}

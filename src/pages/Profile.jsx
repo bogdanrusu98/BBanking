@@ -42,7 +42,7 @@ function Profile() {
   return (
     <div className="">
       <ProfileCompletionBadge />
-      <div className="max-w-4xl mx-auto bg-white dark:text-white dark:bg-gray-800 p-6 rounded-lg">
+      <div className="max-w-4xl mx-auto bg-white dark:text-white dark:bg-gray-800 p-6 rounded-xl">
         {/* Header - Profile Image and Edit Button */}
         <div className="flex items-center space-x-6 mb-6">
           <img

@@ -2,6 +2,8 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { onAuthStateChanged, getAuth } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { auth, db } from '../firebase.config';
+import { CSSProperties } from "react";
+import PacmanLoader from "react-spinners/PacmanLoader";
 
 const UserContext = createContext();
 
@@ -42,7 +44,22 @@ export const UserProvider = ({ children }) => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="sweet-loading h-screen w-full flex flex-col items-center justify-center bg-transparent">
+        <PacmanLoader
+          color="#22c55e" // Verde Tailwind
+          loading={loading}
+          size={50} // Dimensiune mai realistă
+          cssOverride={{ display: 'block', margin: '0 auto' }}
+          aria-label="Loading Spinner"
+        />
+        
+        {/* Opțional: Text de loading */}
+        <p className="mt-4 text-green-500 font-medium">Loading...</p>
+        
+       
+      </div>
+    );
   }
 
   return (
