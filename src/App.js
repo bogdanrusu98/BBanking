@@ -12,7 +12,6 @@ import PrivateRoute from './hooks/PrivateRoute';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { UserProvider } from './hooks/userContext';
-import { useUser } from './hooks/userContext';
 import Profile from './pages/Profile';
 import OpenBalance from './pages/OpenBalance';
 import EditPersonalDetails from './pages/EditPersonalDetails';
@@ -30,7 +29,9 @@ import AllTransactions from './pages/AllTransactions';
 import Settings from './pages/Settings';
 import { ThemeProvider } from './hooks/ThemeContext';
 import StatementsPage from './pages/StatementsPage';
-
+import Help from './pages/Help';
+import Feedback from './pages/Feedback';
+import Notifications from './pages/Notifications'
 // 📦 Layout definit în App.js
 function Layout() {
   const location = useLocation();
@@ -66,8 +67,6 @@ function Layout() {
   );
 }
 function App() {
-  const user = useUser();
-
   return (
     <div className="container mx-auto px-3 pb-12">
       {/* Asigură-te că Router este la un nivel mai înalt decât provider-ele */}
@@ -85,10 +84,19 @@ function App() {
                 <Route path="/sign-in" element={<SignIn />} />
                 <Route path="/sign-up" element={<SignUp />} />
                 <Route path="/training" element={<Training />} />
+                <Route path="/help" element={<Help />} />
+                <Route path="/feedback" element={<Feedback />} />
                 <Route path="/open-balance" element={
                   <TrainingGuard>
                     <PrivateRoute>
                       <OpenBalance />
+                    </PrivateRoute>
+                  </TrainingGuard>
+                  } />
+                  <Route path="/notifications" element={
+                  <TrainingGuard>
+                    <PrivateRoute>
+                      <Notifications />
                     </PrivateRoute>
                   </TrainingGuard>
                   } />
