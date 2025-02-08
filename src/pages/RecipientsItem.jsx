@@ -59,11 +59,13 @@ export default function RecipientsItem() {
 
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <div className="sm:ml-64">
+    <div className="p-4 rounded-lg ">
+    <div className="mb-6  dark:bg-gray-800 dark:text-gray-400">
       {recipient ? (
                 <div>
                 <div className="flex items-center space-x-4">
-                  <div className="w-16 h-16 flex items-center justify-center bg-gray-200 rounded-full text-xl font-bold">
+                  <div className="w-16 h-16 flex items-center  justify-center bg-gray-200 rounded-full text-xl font-bold">
                   {getInitials(recipient.accountHolderName)}
       
                   </div>
@@ -130,5 +132,7 @@ export default function RecipientsItem() {
           </div>
         </div>
       ) : '' }
+    </div>
+    </div>
     </div>
   );}

@@ -43,14 +43,14 @@ function Transactions() {
   return (
     <>
 
-     <div className="mt-10">
-     <div className="flex justify-between items-center mb-4">
+     <div className="mt-10 ">
+     <div className="flex justify-between items-center mb-4 ">
        <h2 className="text-2xl font-semibold">Transactions</h2>
        <Link to="/all-transactions" className="text-green-600 hover:underline">See all</Link>
      </div>
      <div className="space-y-4">
        {transactions.map((transaction, index) => (
-         <div key={index} className="flex items-center space-x-4 p-4 bg-white rounded-lg shadow-md">
+         <div key={index} className="flex items-center  dark:bg-gray-800 space-x-4 p-4 bg-white rounded-lg shadow-lg">
            <div className="text-gray-500">
            {(transaction.type === 'received' || transaction.type === 'deposit') && (
 <FaRegArrowAltCircleDown className="text-green-500 w-6 h-6" />

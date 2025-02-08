@@ -42,7 +42,7 @@ function Profile() {
   return (
     <div className="p-6 sm:ml-64">
       <ProfileCompletionBadge />
-      <div className="max-w-4xl mx-auto bg-white p-6 rounded-lg">
+      <div className="max-w-4xl mx-auto bg-white dark:text-white dark:bg-gray-800 p-6 rounded-lg">
         {/* Header - Profile Image and Edit Button */}
         <div className="flex items-center space-x-6 mb-6">
           <img
@@ -53,7 +53,7 @@ function Profile() {
           <div>
             <h1 className="text-xl font-bold">{user.firstName} {user.lastName}</h1>
             <button
-              className="mt-2 text-blue-600 hover:underline logo-color font-semibold"
+              className="mt-2 dark:bg-green-500 text-blue-600 hover:underline logo-color font-semibold"
               type="button"
               onClick={openPhotoModal}
             >
@@ -74,11 +74,11 @@ function Profile() {
 
 
         {/* Personal Information Section */}
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center  justify-between mb-4">
           <h2 className="font-semibold text-2xl">Personal Information</h2>
           <div className="flex space-x-2">
             <button
-              className="px-4 py-1 border logo-button border-gray-300 rounded-md"
+              className="px-4 py-1 border  dark:bg-green-500 logo-button border-gray-300 rounded-md"
               type="button"
               onClick={() => {
                 setDetailsVisible(false);
@@ -88,7 +88,7 @@ function Profile() {
               View details
             </button>
             <button
-              className="px-4 py-1 border logo-button border-gray-300 rounded-md"
+              className="px-4 py-1 border  dark:bg-green-500 logo-button border-gray-300 rounded-md"
               type="button"
               onClick={() => openPasswordModal('edit')}
             >

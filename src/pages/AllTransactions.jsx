@@ -56,7 +56,7 @@ const AllTransactions = () => {
 
   return (
     <div className="max-w-3xl mx-auto p-4">
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between dark:text-gray-400 mb-4">
         <h1 className="text-2xl font-bold">Transactions</h1>
         <div className="flex gap-2">
           {/* <button className="p-2 bg-green-500 text-white rounded hover:bg-green-600 flex items-center gap-1">
@@ -72,7 +72,7 @@ const AllTransactions = () => {
         <input
           type="text"
           placeholder="Search"
-          className="w-full p-2 pl-10 border rounded-full"
+          className="w-full p-2 pl-10 border rounded-full  dark:bg-gray-800 dark:text-gray-400"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
@@ -81,29 +81,57 @@ const AllTransactions = () => {
 
       {Object.entries(groupedTransactions).map(([date, txns]) => (
         <div key={date} className="mb-6">
-          <h2 className="text-gray-500 font-semibold mb-2">{date}</h2>
+          <h2 className="text-gray-500 dark:text-gray-400 font-semibold mb-2">{date}</h2>
           {txns.map((txn) => (
             <div
               key={txn.id}
-              className="flex items-center justify-between p-4 border-b hover:bg-gray-50"
+              className="flex items-center  justify-between p-4 border-b hover:bg-gray-400"
             >
-              <div className="flex items-center gap-3">
-                <div className="bg-gray-200 p-2 rounded-full">
-                  {txn.type === 'sent' ? '⬆️' : txn.type === 'received' ? '⬇️' : '↔️'}
-                </div>
-                <div>
-                  <p className="font-medium">{txn.name}</p>
-                  <p className="text-sm text-gray-500">{txn.type === 'sent' ? 'Sent' : txn.type === 'received'  ? 'Received' : txn.type === 'moved' || 'deposit' ? 'Moved' : 'Error'}</p>
-                </div>
-              </div>
-              <div className="text-right">
-                <p className={`font-semibold ${txn.amount > 0 ? 'text-green-500' : 'text-red-500'}`}>
-                  {txn.amount > 0 ? '+' : ''}{txn.amount} {txn.currency}
-                </p>
-                {txn.convertedAmount && (
-                  <p className="text-sm text-gray-400">{txn.convertedAmount} RON</p>
-                )}
-              </div>
+<div className="flex items-center gap-3">
+  <div className="bg-gray-200 p-2 rounded-full">
+    {txn.type === 'sent' ? '⬆️' : txn.type === 'received' ? '⬇️' : txn.type === 'deposit' ? '💰' : '↔️'}
+  </div>
+  <div>
+    <p className="font-medium">{txn.name}</p>
+    <p className="text-sm text-gray-400 font-semibold">
+      {txn.type === 'sent'
+        ? 'Sent'
+        : txn.type === 'received'
+        ? 'Received'
+        : txn.type === 'deposit'
+        ? 'Deposit'
+        : txn.type === 'moved'
+        ? 'Moved'
+        : 'Error'}
+    </p>
+  </div>
+</div>
+
+<div className="text-right">
+  <p
+    className={`font-semibold ${
+      txn.type === 'received' || txn.type === 'deposit'
+        ? 'text-green-500'
+        : txn.type === 'sent'
+        ? 'text-red-500'
+        : txn.type === 'moved'
+        ? 'text-black'
+        : 'text-gray-500'
+    }`}
+  >
+    {txn.type === 'received' || txn.type === 'deposit'
+      ? `+${txn.amount}`
+      : txn.type === 'sent'
+      ? `-${txn.amount}`
+      : txn.amount}{' '}
+    {txn.currency}
+  </p>
+  {txn.convertedAmount && (
+    <p className="text-sm text-gray-400">{txn.convertedAmount} RON</p>
+  )}
+</div>
+
+
             </div>
           ))}
         </div>

@@ -27,6 +27,7 @@ import Recipients from './pages/Recipients';
 import RecipientsItem from './pages/RecipientsItem';
 import AddRecipient from './pages/AddRecipient';
 import AllTransactions from './pages/AllTransactions';
+import Settings from './pages/Settings';
 function Layout() {
   const location = useLocation();
 
@@ -65,7 +66,7 @@ function App() {
             <Route path="/cards" element={<Cards />} />
             <Route path="/recipients/add" element={<AddRecipient />} />
             <Route path="/all-transactions" element={<AllTransactions />} />
-
+            <Route path="/settings" element={<Settings />} />
             {/* Pagini protejate de TrainingGuard */}
             <Route path="/home" element={
               <TrainingGuard>

@@ -12,7 +12,7 @@ function HeaderWithCloseButton() {
   };
 
   return (
-    <div className="flex justify-between items-center px-6 py-4 bg-white shadow-sm">
+    <div className="flex justify-between  dark:bg-gray-900  items-center px-6 py-4 bg-white shadow-sm">
       <div className="flex items-center">
 
           <FaPiggyBank className="h-6 w-auto logo" /> &nbsp;

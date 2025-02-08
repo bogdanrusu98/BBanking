@@ -52,7 +52,7 @@ function PasswordConfirmationModal({ isOpen, onClose, onSuccess }) {
 
   return (
     <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center z-50">
-      <div className="bg-white rounded-lg p-6 max-w-md w-full">
+      <div className="bg-white  dark:bg-gray-800 rounded-xl p-6 max-w-md w-full">
         <button onClick={onClose} className="float-right">
           X
         </button>
@@ -68,13 +68,13 @@ function PasswordConfirmationModal({ isOpen, onClose, onSuccess }) {
           value={password}
           onChange={handlePasswordChange}
           placeholder="Your password"
-          className="w-full px-4 py-2 border rounded-xl border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4  dark:bg-gray-800 py-2 border rounded-xl border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
         <div className="mt-6 flex justify-between">
           <button
             onClick={handlePasswordConfirm}
-            className="logo-active-button w-full text-white px-6 py-2 rounded-md hover:bg-green-600 transition duration-300"
+            className="logo-active-button w-full text-white px-6 py-2 rounded-xl hover:bg-green-600 transition duration-300"
             disabled={loading}
           >
             {loading ? 'Verifying...' : 'Done'}

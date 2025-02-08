@@ -84,88 +84,95 @@ function SendMoney() {
     };
   
     const handlePay = async () => {
-        try {
-          if (!selectedAccount || !selectedAccount.id || !recipientAccount || !recipientAccount.id) {
-            console.error('Selected account or recipient account is invalid:', {
-              selectedAccount,
-              recipientAccount,
-            });
-            return;
-          }
-      
-          // Verifică dacă soldul este suficient pentru a efectua tranzacția
-          const newSenderBalance = selectedAccount.balance - parseFloat(amount);
-          if (newSenderBalance < 0) {
-            alert('Insufficient funds in the selected account.');
-            return;
-          }
-      
-          // Creează referințele la documentele din Firestore
-          const senderDocRef = doc(db, 'accounts', selectedAccount.id);
-          const recipientDocRef = doc(db, 'accounts', recipientAccount.id);
-      
-          // Actualizează soldul pentru expeditor
-          await updateDoc(senderDocRef, {
-            balance: newSenderBalance,
+      try {
+        if (!selectedAccount || !selectedAccount.id || !recipientAccount || !recipientAccount.id) {
+          console.error('Selected account or recipient account is invalid:', {
+            selectedAccount,
+            recipientAccount,
           });
-      
-          // Actualizează soldul pentru destinatar
-          const newRecipientBalance = recipientAccount.balance + parseFloat(amount);
-          await updateDoc(recipientDocRef, {
-            balance: newRecipientBalance,
-          });
-      
-          // Determină tipul tranzacției
-          const transactionType = recipientAccount.userId === selectedAccount.userId ? 'moved' : 'sent';
-      
-          // Adaugă tranzacția de tip `sent` sau `moved` pentru expeditor
+          return;
+        }
+    
+        // Verifică dacă soldul este suficient
+        const newSenderBalance = selectedAccount.balance - parseFloat(amount);
+        if (newSenderBalance < 0) {
+          alert('Insufficient funds in the selected account.');
+          return;
+        }
+    
+        const senderDocRef = doc(db, 'accounts', selectedAccount.id);
+        const recipientDocRef = doc(db, 'accounts', recipientAccount.id);
+    
+        // Actualizează soldurile
+        await updateDoc(senderDocRef, { balance: newSenderBalance });
+        const newRecipientBalance = recipientAccount.balance + parseFloat(amount);
+        await updateDoc(recipientDocRef, { balance: newRecipientBalance });
+    
+        // Determină tipul tranzacției
+        const transactionType = recipientAccount.userId === selectedAccount.userId ? 'moved' : 'sent';
+    
+        // Adaugă tranzacția pentru expeditor
+        await addDoc(collection(db, 'transactions'), {
+          userId: user.uid,
+          accountId: selectedAccount.id,
+          amount: parseFloat(amount),
+          currency: selectedAccount.currency,
+          date: new Date(),
+          type: transactionType,
+          recipientIban: recipientAccount.iban,
+          recipientId: recipientAccount.id,
+        });
+    
+        // Adaugă tranzacția pentru destinatar (dacă e cazul)
+        if (transactionType === 'sent') {
           await addDoc(collection(db, 'transactions'), {
-            userId: user.uid,
-            accountId: selectedAccount.id,
+            userId: recipientAccount.userId,
+            accountId: recipientAccount.id,
             amount: parseFloat(amount),
             currency: selectedAccount.currency,
             date: new Date(),
-            type: transactionType,
-            recipientIban: recipientAccount.iban,
-            recipientId: recipientAccount.id,
+            type: 'received',
+            senderIban: selectedAccount.iban,
+            senderId: selectedAccount.id,
           });
-      
-          // Adaugă tranzacția de tip `received` pentru destinatar, dacă este un transfer între utilizatori diferiți
-          if (transactionType === 'sent') {
-            await addDoc(collection(db, 'transactions'), {
-              userId: recipientAccount.userId, // Utilizatorul care primește fonduri
-              accountId: recipientAccount.id,
-              amount: parseFloat(amount),
-              currency: selectedAccount.currency,
-              date: new Date(),
-              type: 'received',
-              senderIban: selectedAccount.iban,
-              senderId: selectedAccount.id,
-            });
-          }
-          const recipientRef = collection(db, 'recipients');
-
+        }
+    
+        // Verifică dacă IBAN-ul există deja în colecția `recipients`
+        const recipientRef = collection(db, 'recipients');
+        const q = query(
+          recipientRef,
+          where('userId', '==', user.uid),
+          where('iban', '==', recipientIban)
+        );
+        const querySnapshot = await getDocs(q);
+    
+        // Adaugă doar dacă IBAN-ul nu există deja
+        if (querySnapshot.empty) {
           await addDoc(recipientRef, {
-            userId: user.uid, // Asociază contul cu utilizatorul curent
-            createdAt: new Date(), // Data la care a fost creat contul
-            iban: recipientIban, // Adăugăm IBAN-ul generat
+            userId: user.uid,
+            createdAt: new Date(),
+            iban: recipientIban,
             bankName: 'Auto',
             accountType: 'Private',
-            accountHolderName: recipientAccount.name, // Folosim name în loc de fullName
+            accountHolderName: recipientAccount.name,
             currency: recipientAccount.currency,
-            email: ''
+            email: '',
           });
-          // Navighează la pagina principală sau afișează un mesaj de succes
-          navigate('/home');
-        } catch (error) {
-          console.error('Error completing the transaction:', error);
+        } else {
+          console.log('Recipient with this IBAN already exists. Skipping save.');
         }
-      };
-      
+    
+        // Navighează la pagina principală
+        navigate('/home');
+      } catch (error) {
+        console.error('Error completing the transaction:', error);
+      }
+    };
+    
 
   return (
     <div className="p-6 sm:ml-64">
-      <div className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
+      <div className="max-w-2xl mx-auto  dark:bg-gray-800 dark:text-gray-400 shadow-md bg-white p-6 rounded-lg shadow-md">
         <ProgressBar currentStep={currentStep} />
 
         {currentStep === 0 && (
@@ -175,7 +182,7 @@ function SendMoney() {
               {accounts.map((account) => (
                 <div
                   key={account.id}
-                  className="p-4 bg-gray-100 rounded-lg flex items-center justify-between cursor-pointer hover:bg-gray-200"
+                  className="p-4 bg-gray-100 rounded-lg  dark:bg-gray-800  flex items-center justify-between cursor-pointer hover:bg-gray-100"
                   onClick={() => handleSelectAccount(account)}
                 >
                   <div className="flex items-center">

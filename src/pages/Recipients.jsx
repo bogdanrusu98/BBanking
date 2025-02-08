@@ -61,7 +61,7 @@ function Recipients() {
     <div className="p-4 sm:ml-64">
       <div className="p-4 rounded-lg ">
       <div className="mb-6">
-      <h1 className="text-2xl font-bold mb-4">Recipients</h1>
+      <h1 className="text-2xl font-bold mb-4 dark:text-white">Recipients</h1>
 
       <div className="flex items-center gap-2 mb-4">
         <input
@@ -69,9 +69,9 @@ function Recipients() {
         placeholder="Name, email, phone"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="flex-1 border border-gray-300 rounded-full p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+        className="flex-1  dark:bg-gray-600 border border-gray-300 rounded-full p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
         />
-        <Link to="/recipients/add" className="px-4 py-2 bg-gray-200 logo-button rounded-full">
+        <Link to="/recipients/add" className=" dark:bg-gray-400 px-4 py-2 bg-gray-200 logo-button rounded-full">
           Add recipient
         </Link>
       </div>
@@ -80,13 +80,13 @@ function Recipients() {
 
 
 {filteredRecipients.length === 0 ? (
-  <p className="text-gray-500">No recipients found.</p>
+  <p className="text-gray-500 dark:text-white">No recipients found.</p>
 ) : (
   filteredRecipients.map((recipient, index) => (
     <Link
       to={`/recipients/${recipient.id}`}
       key={index}
-      className="flex items-center p-4 rounded-lg cursor-pointer hover:shadow-md transition"
+      className="flex items-center dark:text-white  p-4 rounded-lg cursor-pointer hover:shadow-md transition"
     >
       <div className="flex items-center justify-center w-10 h-10 bg-gray-200 rounded-full text-black font-bold relative ">
         {getInitials(recipient.accountHolderName)}<CurrencyFlag currency={recipient.currency} size="md" className="bottom-0 left-7 absolute rounded-full w-3.5 h-3.5" />

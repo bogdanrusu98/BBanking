@@ -123,24 +123,24 @@ function AddMoney() {
 
   return (
     <div className="p-6 sm:ml-64">
-      <div className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
+      <div className="max-w-lg  dark:bg-gray-800 dark:text-gray-400 mx-auto bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-2xl font-semibold mb-6 text-center">Add money</h2>
 
         {/* Input for amount */}
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Amount to add</label>
+          <label className="block  dark:text-gray-400 text-sm font-medium text-gray-700">Amount to add</label>
           <div className="flex items-center mt-1">
             <input
               type="number"
               value={amount}
               onChange={handleAmountChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full  dark:bg-gray-800 dark:text-gray-400 px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <div className="bg-gray-100 px-4 py-2 border border-gray-300 rounded-r-md">
+            <div className="bg-gray-100 px-4 py-2  dark:bg-gray-800 dark:text-gray-400 border border-gray-300 rounded-r-md">
               <select
                 value={currency}
                 onChange={handleCurrencyChange}
-                className="bg-transparent focus:outline-none"
+                className="bg-transparent  dark:bg-gray-800 dark:text-gray-400 focus:outline-none"
               >
                 <option value="">Choose currency...</option>
                 {accounts.map((account) => (
@@ -151,13 +151,13 @@ function AddMoney() {
               </select>
             </div>
           </div>
-          <p className="mt-2 text-sm text-gray-500">You can open balances in 40+ currencies.</p>
+          <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">You can open balances in 40+ currencies.</p>
         </div>
 
         {/* Payment method */}
         <div className="mb-4">
-          <h3 className="font-medium text-gray-700">Paying with</h3>
-          <div className="flex items-center bg-gray-100 p-4 rounded-lg mt-2">
+          <h3 className="font-medium text-gray-700 dark:text-gray-400">Paying with</h3>
+          <div className="flex items-center bg-gray-100  dark:bg-gray-800 dark:text-gray-400 p-4 rounded-lg mt-2">
             <FaCcVisa className="text-blue-500 w-10 h-10" />
             <div className="ml-4">
               <p className="font-medium">Debit card *{cardNumber}</p>
@@ -168,7 +168,7 @@ function AddMoney() {
         </div>
 
         {/* Fees section */}
-        <div className="mb-6 bg-gray-50 p-4 rounded-lg">
+        <div className="mb-6 bg-gray-50 p-4  dark:bg-gray-800 dark:text-gray-400 rounded-lg">
           <div className="flex justify-between mb-2">
             <span className="text-gray-500">Debit card fee</span>
             <span className="text-gray-700">{fees.cardFee.toFixed(2)} RON</span>

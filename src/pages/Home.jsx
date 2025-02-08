@@ -93,7 +93,7 @@ function Home() {
   }, [accounts, exchangeRates]);
 
   return (
-    <div className="p-4 sm:ml-64">
+    <div className="p-4 sm:ml-64  dark:bg-gray-800 dark:text-white">
       <div className="p-4 rounded-lg ">
         {/* Total Balance Section */}
         <div className="mb-6">
@@ -116,11 +116,11 @@ function Home() {
         </div>
 
         {/* Accounts Section */}
-        <div className="mt-6">
-          <div className="flex space-x-4 overflow-x-auto">
+        <div className="mt-6 ">
+          <div className="flex space-x-4 overflow-x-auto shadow-md">
             {accounts.map((account, index) => (
               <Link to={`/balances/${account.id}`} key={index}>
-                <div className="w-64 h-52 p-4 bg-gray-100 rounded-xl flex flex-col">
+                <div className="w-64 h-52 p-4 bg-gray-100 rounded-xl flex flex-col  dark:bg-gray-800">
                   <div className="flex items-center mb-2">
                     <span className="text-2xl mr-2">
                       <CurrencyFlag currency={account.currency} size="xl" className="rounded-xl" />
@@ -139,7 +139,7 @@ function Home() {
               </Link>
             ))}
             <Link to="/open-balance">
-              <div className="w-64 h-52 p-4 bg-white border-dashed border-2 border-gray-300 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:bg-gray-100">
+              <div className="w-64 h-52 p-4 bg-white border-dashed  dark:bg-gray-800 border-2 border-gray-300 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:bg-gray-100">
                 <CiCirclePlus className="w-10 h-10 text-gray-500" />
                 <p className="font-semibold pt-4 text-center">
                   {accounts.length > 0 ? 'Add another currency to your account.' : 'Open an account'}

@@ -39,7 +39,7 @@ function Balance() {
 
   return (
     <div className="p-4 sm:ml-64">
-      <div className="p-4 bg-gray-50 rounded-lg shadow-md">
+      <div className="p-4 bg-gray-50 dark:text-white  dark:bg-gray-800 rounded-lg shadow-md">
         <h2 className="text-2xl font-semibold mb-4">Balance Details</h2>
         {loading ? (
           <p>Loading account details...</p>
