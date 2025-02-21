@@ -127,7 +127,7 @@ function AddMoney() {
   };
 
   return (
-    <div className="p-6 sm:ml-64">
+    <div className="p-6 ">
       <div className="max-w-lg  dark:bg-gray-800 dark:text-gray-400 mx-auto bg-white p-6 rounded-xl shadow-md">
         <h2 className="text-2xl font-semibold mb-6 text-center">Add money</h2>
 
@@ -139,13 +139,13 @@ function AddMoney() {
               type="number"
               value={amount}
               onChange={handleAmountChange}
-              className="w-full  dark:bg-gray-800 dark:text-gray-400 px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full  dark:bg-gray-800 dark:text-gray-400 px-4 py-2 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <div className="bg-gray-100 px-4 py-2  dark:bg-gray-800 dark:text-gray-400 border border-gray-300 rounded-r-md">
+            <div className="bg-gray-100 px-4 py-2  dark:bg-gray-800 dark:text-gray-400 rounded-r-md">
               <select
                 value={currency}
                 onChange={handleCurrencyChange}
-                className="bg-transparent  dark:bg-gray-800 dark:text-gray-400 focus:outline-none"
+                className=" dark:bg-gray-800 dark:text-gray-400 focus:outline-none"
               >
                 <option value="">Choose currency...</option>
                 {accounts.map((account) => (
