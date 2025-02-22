@@ -6,7 +6,6 @@ const ChatBot = () => {
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const user = useUser();
-
   // Referință pentru containerul de mesaje
   const messagesEndRef = useRef(null);
 
@@ -42,7 +41,7 @@ const ChatBot = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer YOUR_DEEPSEEK_API_KEY`, // Înlocuiește cu cheia ta API
+          'Authorization': `sk-344aa720739349619ad54985550dc889`, // Înlocuiește cu cheia ta API
         },
         body: JSON.stringify({
           message: inputValue,

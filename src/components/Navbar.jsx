@@ -24,7 +24,6 @@ function Navbar({ toggleSidebar }) {
   const user = useUser()
   const navigate = useNavigate()
   const [notifications, setNotifications] = useState([])
-
   const handleLogout = async () => {
     const auth = getAuth();
     await signOut(auth);
