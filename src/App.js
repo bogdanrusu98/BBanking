@@ -33,7 +33,6 @@ import Help from './pages/Help';
 import Feedback from './pages/Feedback';
 import Notifications from './pages/Notifications'
 import ChatBot from './hooks/Chatbot';
-
 // 📦 Layout definit în App.js
 function Layout() {
   const location = useLocation();
