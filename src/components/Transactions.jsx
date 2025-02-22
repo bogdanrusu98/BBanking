@@ -74,7 +74,7 @@ transaction.type === 'received' || transaction.type === 'deposit'
 ? 'text-green-600'
 : transaction.type === 'sent'
 ? 'text-red-500'
-: 'text-gray-800'
+: 'text-gray-800 dark:text-gray-300'
 }`}>
 
              {transaction.amount} {transaction.currency}
