@@ -41,7 +41,7 @@ const ChatBot = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `sk-344aa720739349619ad54985550dc889`, // Înlocuiește cu cheia ta API
+          'Authorization': `${process.env.REACT_APP_DEEPSEEK}`, // Înlocuiește cu cheia ta API
         },
         body: JSON.stringify({
           message: inputValue,
