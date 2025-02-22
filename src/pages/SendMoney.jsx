@@ -176,7 +176,7 @@ function SendMoney() {
     
 
   return (
-    <div className="p-6 sm:ml-64">
+    <div className="p-6">
       <div className="max-w-2xl mx-auto  dark:bg-gray-700 dark:text-gray-400 shadow-md bg-white p-6 rounded-xl shadow-md">
         <ProgressBar currentStep={currentStep} />
 
@@ -212,9 +212,9 @@ function SendMoney() {
               value={recipientIban}
               onChange={handleIbanChange}
               placeholder="Enter recipient's IBAN"
-              className="w-full px-4 py-2 border rounded-xl mb-4"
+              className="w-full px-4 py-2 border rounded-xl mb-4 dark:bg-gray-700"
             />
-            <button onClick={handlePreviousStep} className="px-4 py-2 bg-gray-200 rounded-xl mr-2">Back</button>
+            <button onClick={handlePreviousStep} className="px-4 py-2 bg-gray-200 rounded-xl mr-2 dark:bg-gray-700">Back</button>
             <button onClick={handleValidateRecipient} className="px-4 py-2 bg-green-500 text-white rounded-xl">Next</button>
           </div>
         )}
@@ -226,9 +226,9 @@ function SendMoney() {
               value={amount}
               onChange={handleAmountChange}
               placeholder="Enter amount"
-              className="w-full px-4 py-2 border rounded-xl mb-4"
+              className="w-full px-4 py-2 border rounded-xl mb-4 dark:bg-gray-700"
             />
-            <button onClick={handlePreviousStep} className="px-4 py-2 bg-gray-200 rounded-xl mr-2">Back</button>
+            <button onClick={handlePreviousStep} className="px-4 py-2 bg-gray-200 rounded-xl mr-2 dark:bg-gray-700">Back</button>
             <button onClick={handleReview} className="px-4 py-2 bg-green-500 text-white rounded-xl">Next</button>
           </div>
         )}
@@ -241,7 +241,7 @@ function SendMoney() {
               <p>To: {reviewData.recipient.currency} - ..{reviewData.recipient.iban.slice(-4)}</p>
               <p>Amount: {amount} {reviewData.account.currency}</p>
             </div>
-            <button onClick={handlePreviousStep} className="px-4 py-2 bg-gray-200 rounded-xl mr-2">Back</button>
+            <button onClick={handlePreviousStep} className="px-4 py-2 bg-gray-200 rounded-xl mr-2 dark:bg-gray-700">Back</button>
             <button onClick={handleNextStep} className="px-4 py-2 bg-green-500 text-white rounded-xl">Confirm</button>
           </div>
         )}
@@ -250,7 +250,7 @@ function SendMoney() {
           <div>
             <h2 className="text-2xl font-semibold mb-6">Complete payment</h2>
             <p className="mb-4">Press "Pay" to complete the transaction.</p>
-            <button onClick={handlePreviousStep} className="px-4 py-2 bg-gray-200 rounded-xl mr-2">Back</button>
+            <button onClick={handlePreviousStep} className="px-4 py-2 bg-gray-200 rounded-xl mr-2 dark:bg-gray-700">Back</button>
             <button onClick={handlePay} className="px-4 py-2 bg-green-500 text-white rounded-xl">Pay</button>
           </div>
         )}

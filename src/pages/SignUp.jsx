@@ -169,7 +169,7 @@ function SignUp() {
 
                             <button
                                 type="submit"
-                                className="btn btn-primary w-full text-white hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center"
+                                className="btn btn-primary w-full text-black hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center"
                                 disabled={formik.isSubmitting}
                             >
                                 Create an account

@@ -55,7 +55,7 @@ function Balance() {
 
   return (
     <div className="p-4">
-      <div className="p-4 bg-gray-50 dark:text-white dark:bg-gray-800 rounded-xl shadow-md">
+      <div className="p-4 bg-gray-50 dark:text-white dark:bg-gray-800 rounded-xl">
         <h2 className="text-2xl font-semibold mb-4">Balance Details</h2>
         {loading ? (
           <p>Loading account details...</p>
@@ -89,7 +89,7 @@ function Balance() {
   </div>
 
   {/* IBAN cu buton de copiere */}
-  <div className="flex mt-4 items-center text-gray-500 text-sm mb-2 p-4 bg-gray-600 w-full rounded-xl dark:text-white relative">
+  <div className="flex mt-4 items-center bg-gray-200 dark:text-gray-500 text-sm mb-2 p-4 dark:bg-gray-600 w-full rounded-xl dark:text-white relative">
     <FaLandmark className="mr-1" />
     <span className="ml-1 font-semibold">{account.iban}</span>
         

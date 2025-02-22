@@ -32,6 +32,8 @@ import StatementsPage from './pages/StatementsPage';
 import Help from './pages/Help';
 import Feedback from './pages/Feedback';
 import Notifications from './pages/Notifications'
+import ChatBot from './hooks/ChatBot';
+
 // 📦 Layout definit în App.js
 function Layout() {
   const location = useLocation();
@@ -199,6 +201,7 @@ function App() {
         </ThemeProvider>
       </Router>
       <ToastContainer />
+      <ChatBot />
     </div>
   );
 }
