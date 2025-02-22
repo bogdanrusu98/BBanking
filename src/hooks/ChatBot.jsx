@@ -46,6 +46,7 @@ const ChatBot = () => {
         body: JSON.stringify({
           message: inputValue,
         }),
+        
       });
 
       const data = await response.json();
@@ -58,7 +59,7 @@ const ChatBot = () => {
     } catch (error) {
       console.error('Error sending message to DeepSeek:', error);
       const errorMessage = {
-        text: 'Sorry, something went wrong. Please try again.',
+        text: 'Chatbot is not available in this moment. Please try again tomorrow.',
         sender: 'bot',
         timestamp: new Date().toLocaleTimeString(),
       };

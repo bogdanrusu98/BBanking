@@ -7,173 +7,178 @@ import CurrencyFlag from 'react-currency-flags';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 function SendMoney() {
-    const user = useUser();
-    const navigate = useNavigate();
-    const [currentStep, setCurrentStep] = useState(0);
-    const [selectedAccount, setSelectedAccount] = useState(null);
-    const [accounts, setAccounts] = useState([]);
-    const [amount, setAmount] = useState('');
-    const [recipientIban, setRecipientIban] = useState('');
-    const [recipientAccount, setRecipientAccount] = useState(null);
-    const [reviewData, setReviewData] = useState(null);
-  
-    useEffect(() => {
-      const fetchAccounts = async () => {
-        try {
-          const q = query(collection(db, 'accounts'), where('userId', '==', user.uid));
-          const querySnapshot = await getDocs(q);
-          const fetchedAccounts = querySnapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-          }));
-          setAccounts(fetchedAccounts);
-        } catch (error) {
-          console.error('Error fetching accounts:', error);
-        }
-      };
-  
-      if (user) fetchAccounts();
-    }, [user]);
-  
-    const handleNextStep = () => {
-      if (currentStep < 4) setCurrentStep(currentStep + 1);
-    };
-  
-    const handlePreviousStep = () => {
-      if (currentStep > 0) setCurrentStep(currentStep - 1);
-    };
-  
-    const handleSelectAccount = (account) => {
-      setSelectedAccount(account);
-      handleNextStep();
-    };
-  
-    const handleAmountChange = (e) => {
-      setAmount(e.target.value);
-    };
-  
-    const handleIbanChange = (e) => {
-      setRecipientIban(e.target.value);
-    };
-  
-    const handleValidateRecipient = async () => {
+  const user = useUser();
+  const navigate = useNavigate();
+  const [currentStep, setCurrentStep] = useState(0);
+  const [selectedAccount, setSelectedAccount] = useState(null);
+  const [accounts, setAccounts] = useState([]);
+  const [amount, setAmount] = useState('');
+  const [recipientIban, setRecipientIban] = useState('');
+  const [recipientAccount, setRecipientAccount] = useState(null);
+  const [reviewData, setReviewData] = useState(null);
+
+  useEffect(() => {
+    const fetchAccounts = async () => {
       try {
-        const q = query(collection(db, 'accounts'), where('iban', '==', recipientIban));
+        const q = query(collection(db, 'accounts'), where('userId', '==', user.uid));
         const querySnapshot = await getDocs(q);
-  
-        if (!querySnapshot.empty) {
-          const recipient = querySnapshot.docs[0].data();
-          const recipientId = querySnapshot.docs[0].id; // Preluăm și ID-ul documentului
-          setRecipientAccount({ ...recipient, id: recipientId });
-          handleNextStep();
-        } else {
-          alert('No account found with the specified IBAN.');
-        }
+        const fetchedAccounts = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setAccounts(fetchedAccounts);
       } catch (error) {
-        console.error('Error validating recipient:', error);
+        console.error('Error fetching accounts:', error);
       }
     };
-  
-    const handleReview = () => {
-      setReviewData({
-        account: selectedAccount,
-        amount,
-        recipient: recipientAccount,
-      });
-      handleNextStep();
-    };
-  
-    const handlePay = async () => {
-      try {
-        if (!selectedAccount || !selectedAccount.id || !recipientAccount || !recipientAccount.id) {
-          console.error('Selected account or recipient account is invalid:', {
-            selectedAccount,
-            recipientAccount,
-          });
-          return;
-        }
-    
-        // Verifică dacă soldul este suficient
-        const newSenderBalance = selectedAccount.balance - parseFloat(amount);
-        if (newSenderBalance < 0) {
-          toast.error('Insufficient funds in the selected account.');
-          return;
-        }
 
-        if(amount < 0) {
-          toast.error("Amount has to be positive");
-          return;
-        }
-    
-        const senderDocRef = doc(db, 'accounts', selectedAccount.id);
-        const recipientDocRef = doc(db, 'accounts', recipientAccount.id);
-    
-        // Actualizează soldurile
-        await updateDoc(senderDocRef, { balance: newSenderBalance });
-        const newRecipientBalance = recipientAccount.balance + parseFloat(amount);
-        await updateDoc(recipientDocRef, { balance: newRecipientBalance });
-    
-        // Determină tipul tranzacției
-        const transactionType = recipientAccount.userId === selectedAccount.userId ? 'moved' : 'sent';
-    
-        // Adaugă tranzacția pentru expeditor
+    if (user) fetchAccounts();
+  }, [user]);
+
+  const handleNextStep = () => {
+    if (currentStep < 4) setCurrentStep(currentStep + 1);
+  };
+
+  const handlePreviousStep = () => {
+    if (currentStep > 0) setCurrentStep(currentStep - 1);
+  };
+
+  const handleSelectAccount = (account) => {
+    setSelectedAccount(account);
+    handleNextStep();
+  };
+
+  const handleAmountChange = (e) => {
+    setAmount(e.target.value);
+  };
+
+  const handleIbanChange = (e) => {
+    setRecipientIban(e.target.value);
+  };
+
+  const handleValidateRecipient = async () => {
+    try {
+      const q = query(collection(db, 'accounts'), where('iban', '==', recipientIban));
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) {
+        const recipient = querySnapshot.docs[0].data();
+        const recipientId = querySnapshot.docs[0].id; // Preluăm și ID-ul documentului
+        setRecipientAccount({ ...recipient, id: recipientId });
+        handleNextStep();
+      } else {
+        toast.error('No account found with the specified IBAN.');
+      }
+    } catch (error) {
+      console.error('Error validating recipient:', error);
+    }
+  };
+
+  const handleReview = () => {
+    setReviewData({
+      account: selectedAccount,
+      amount,
+      recipient: recipientAccount,
+    });
+    handleNextStep();
+  };
+
+  const handlePay = async () => {
+    try {
+      if (!selectedAccount || !selectedAccount.id || !recipientAccount || !recipientAccount.id) {
+        console.error('Selected account or recipient account is invalid:', {
+          selectedAccount,
+          recipientAccount,
+        });
+        return;
+      }
+
+      // Verifică dacă soldul este suficient
+      const newSenderBalance = selectedAccount.balance - parseFloat(amount);
+      if (newSenderBalance < 0) {
+        toast.error('Insufficient funds in the selected account.');
+        return;
+      }
+
+      if (amount <= 0) {
+        toast.error("Amount has to be higher than 0");
+        return;
+      }
+
+      if (recipientIban == selectedAccount.iban) {
+        toast.error('You can not transfer to yourself');
+        return;
+      }
+
+      const senderDocRef = doc(db, 'accounts', selectedAccount.id);
+      const recipientDocRef = doc(db, 'accounts', recipientAccount.id);
+
+      // Actualizează soldurile
+      await updateDoc(senderDocRef, { balance: newSenderBalance });
+      const newRecipientBalance = recipientAccount.balance + parseFloat(amount);
+      await updateDoc(recipientDocRef, { balance: newRecipientBalance });
+
+      // Determină tipul tranzacției
+      const transactionType = recipientAccount.userId === selectedAccount.userId ? 'moved' : 'sent';
+
+      // Adaugă tranzacția pentru expeditor
+      await addDoc(collection(db, 'transactions'), {
+        userId: user.uid,
+        accountId: selectedAccount.id,
+        amount: parseFloat(amount),
+        currency: selectedAccount.currency,
+        date: new Date(),
+        type: transactionType,
+        recipientIban: recipientAccount.iban,
+        recipientId: recipientAccount.id,
+      });
+
+      // Adaugă tranzacția pentru destinatar (dacă e cazul)
+      if (transactionType === 'sent') {
         await addDoc(collection(db, 'transactions'), {
-          userId: user.uid,
-          accountId: selectedAccount.id,
+          userId: recipientAccount.userId,
+          accountId: recipientAccount.id,
           amount: parseFloat(amount),
           currency: selectedAccount.currency,
           date: new Date(),
-          type: transactionType,
-          recipientIban: recipientAccount.iban,
-          recipientId: recipientAccount.id,
+          type: 'received',
+          senderIban: selectedAccount.iban,
+          senderId: selectedAccount.id,
         });
-    
-        // Adaugă tranzacția pentru destinatar (dacă e cazul)
-        if (transactionType === 'sent') {
-          await addDoc(collection(db, 'transactions'), {
-            userId: recipientAccount.userId,
-            accountId: recipientAccount.id,
-            amount: parseFloat(amount),
-            currency: selectedAccount.currency,
-            date: new Date(),
-            type: 'received',
-            senderIban: selectedAccount.iban,
-            senderId: selectedAccount.id,
-          });
-        }
-    
-        // Verifică dacă IBAN-ul există deja în colecția `recipients`
-        const recipientRef = collection(db, 'recipients');
-        const q = query(
-          recipientRef,
-          where('userId', '==', user.uid),
-          where('iban', '==', recipientIban)
-        );
-        const querySnapshot = await getDocs(q);
-    
-        // Adaugă doar dacă IBAN-ul nu există deja
-        if (querySnapshot.empty) {
-          await addDoc(recipientRef, {
-            userId: user.uid,
-            createdAt: new Date(),
-            iban: recipientIban,
-            bankName: 'Auto',
-            accountType: 'Private',
-            accountHolderName: recipientAccount.name,
-            currency: recipientAccount.currency,
-            email: '',
-          });
-        } else {
-          console.log('Recipient with this IBAN already exists. Skipping save.');
-        }
-    
-        // Navighează la pagina principală
-        navigate('/home');
-      } catch (error) {
-        console.error('Error completing the transaction:', error);
       }
-    };
-    
+
+      // Verifică dacă IBAN-ul există deja în colecția `recipients`
+      const recipientRef = collection(db, 'recipients');
+      const q = query(
+        recipientRef,
+        where('userId', '==', user.uid),
+        where('iban', '==', recipientIban)
+      );
+      const querySnapshot = await getDocs(q);
+
+      // Adaugă doar dacă IBAN-ul nu există deja
+      if (querySnapshot.empty) {
+        await addDoc(recipientRef, {
+          userId: user.uid,
+          createdAt: new Date(),
+          iban: recipientIban,
+          bankName: 'Auto',
+          accountType: 'Private',
+          accountHolderName: recipientAccount.name,
+          currency: recipientAccount.currency,
+          email: '',
+        });
+      } else {
+        console.log('Recipient with this IBAN already exists. Skipping save.');
+      }
+
+      // Navighează la pagina principală
+      navigate('/home');
+    } catch (error) {
+      console.error('Error completing the transaction:', error);
+    }
+  };
+
 
   return (
     <div className="p-6">
@@ -187,7 +192,7 @@ function SendMoney() {
               {accounts.map((account) => (
                 <div
                   key={account.id}
-                  className="p-4 bg-gray-100 rounded-xl  dark:bg-gray-600  flex items-center justify-between cursor-pointer hover:bg-gray-100"
+                  className="p-4 bg-gray-100 rounded-xl dark:bg-gray-600 flex items-center justify-between cursor-pointer hover:bg-gray-200"
                   onClick={() => handleSelectAccount(account)}
                 >
                   <div className="flex items-center">
@@ -204,6 +209,7 @@ function SendMoney() {
           </div>
         )}
 
+
         {currentStep === 1 && (
           <div>
             <h2 className="text-2xl font-semibold mb-6">Enter recipient's IBAN</h2>
@@ -214,11 +220,40 @@ function SendMoney() {
               placeholder="Enter recipient's IBAN"
               className="w-full px-4 py-2 border rounded-xl mb-4 dark:bg-gray-700"
             />
-            <button onClick={handlePreviousStep} className="px-4 py-2 bg-gray-200 rounded-xl mr-2 dark:bg-gray-700">Back</button>
-            <button onClick={handleValidateRecipient} className="px-4 py-2 bg-green-500 text-white rounded-xl">Next</button>
+
+            <div className="mb-6">
+              <div class="inline-flex items-center justify-center w-full">
+                <hr class="w-full h-px my-8 bg-gray-200 border-0 dark:bg-gray-600" />
+              </div>
+              <div className="space-y-2">
+                {accounts
+                  .filter((account) => account.id !== selectedAccount?.id)
+                  .map((account) => (
+                    <div
+                      key={account.id}
+                      className="p-3 bg-gray-100 rounded-xl dark:bg-gray-600 flex items-center justify-between cursor-pointer hover:bg-gray-200"
+                      onClick={() => setRecipientIban(account.iban)}
+                    >
+                      <div className="flex items-center">
+                        <CurrencyFlag currency={account.currency} size="xl" className="rounded-xl" />
+                        <div className="ml-4">
+                          <p className="font-semibold">{account.currency}</p>
+                          <p className="text-sm text-gray-500">IBAN: ..{account.iban.slice(-4)}</p>
+                        </div>
+                      </div>
+                      <p className="font-bold">{account.balance.toFixed(2)} {account.currency}</p>
+                    </div>
+                  ))}
+              </div>
+            </div>
+            <div className="flex justify-between">
+              <button onClick={handlePreviousStep} className="px-4 py-2 bg-gray-200 rounded-xl mr-2 dark:bg-gray-700">Back</button>
+              <button onClick={handleValidateRecipient} className="px-4 py-2 bg-green-500 text-white rounded-xl">Next</button>
+            </div>
           </div>
         )}
-                {currentStep === 2 && (
+
+        {currentStep === 2 && (
           <div>
             <h2 className="text-2xl font-semibold mb-6">Enter amount</h2>
             <input

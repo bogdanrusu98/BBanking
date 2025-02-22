@@ -111,7 +111,7 @@ const AllTransactions = ({ currency = null }) => {
                       : txn.type === 'sent'
                         ? 'text-red-500'
                         : txn.type === 'moved'
-                          ? 'text-black'
+                          ? 'text-black dark:text-gray-300'
                           : 'text-gray-500'
                     }`}
                 >
