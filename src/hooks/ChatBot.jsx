@@ -22,20 +22,17 @@ const ChatBot = () => {
   const toggleChat = () => {
     setIsOpen(!isOpen);
   };
-
   const handleSendMessage = async () => {
-    if (inputValue.trim() === '') return;
-
-    // Adăugăm mesajul utilizatorului în lista de mesaje
+    if (inputValue.trim() === "") return;
+  
     const userMessage = {
       text: inputValue,
-      sender: 'user',
+      sender: "user",
       timestamp: new Date().toLocaleTimeString(),
     };
     setMessages([...messages, userMessage]);
-    setInputValue('');
-
-    // Trimitem mesajul la API-ul DeepSeek
+    setInputValue("");
+  
     try {
       const response = await fetch("/api/proxy", {
         method: "POST",
@@ -46,25 +43,32 @@ const ChatBot = () => {
           message: inputValue,
         }),
       });
-
-      const data = await response.json();
+      
+      console.log("Response status:", response.status);
+      const responseText = await response.text();
+      console.log("Response text:", responseText);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      
+      const data = JSON.parse(responseText); // Parsează manual textul ca JSON
       const botMessage = {
         text: data.response,
-        sender: 'bot',
+        sender: "bot",
         timestamp: new Date().toLocaleTimeString(),
       };
       setMessages([...messages, userMessage, botMessage]);
     } catch (error) {
-      console.error('Error sending message to DeepSeek:', error);
+      console.error("Error sending message to DeepSeek:", error);
       const errorMessage = {
-        text: 'Chatbot is not available in this moment. Please try again tomorrow.',
-        sender: 'bot',
+        text: "Chatbot is not available at the moment. Please try again later.",
+        sender: "bot",
         timestamp: new Date().toLocaleTimeString(),
       };
       setMessages([...messages, userMessage, errorMessage]);
     }
   };
-
   return (
     <div className="fixed bottom-4 right-4">
       {/* Butonul cu bubble head */}
