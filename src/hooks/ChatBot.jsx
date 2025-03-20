@@ -37,16 +37,14 @@ const ChatBot = () => {
 
     // Trimitem mesajul la API-ul DeepSeek
     try {
-      const response = await fetch('https://api.deepseek.com/v1/chat', {
-        method: 'POST',
+      const response = await fetch("/api/proxy", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `${process.env.REACT_APP_DEEPSEEK}`, // Înlocuiește cu cheia ta API
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           message: inputValue,
         }),
-        
       });
 
       const data = await response.json();
