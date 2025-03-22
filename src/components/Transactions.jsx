@@ -57,7 +57,7 @@ function Transactions() {
 )}
 
              {transaction.type === 'sent' && <FaRegArrowAltCircleUp className="text-red-500 w-6 h-6" />}
-             {transaction.type === 'moved' && <FaExchangeAlt className="text-blue-500 w-6 h-6" />}
+             {transaction.type === 'moved' && <FaExchangeAlt className="text-green-500 w-6 h-6" />}
            </div>
            <div className="flex-1">
 <h3 className="font-semibold">{transaction.type}</h3>

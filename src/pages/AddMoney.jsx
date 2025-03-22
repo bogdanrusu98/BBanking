@@ -143,7 +143,7 @@ function AddMoney() {
               type="number"
               value={amount}
               onChange={handleAmountChange}
-              className="w-full  dark:bg-gray-800 dark:text-gray-400 px-4 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full  dark:bg-gray-800 dark:text-gray-400 px-4 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500"
             />
             <div className="px-4 py-2  dark:bg-gray-800 dark:text-gray-400 rounded-xl">
               <select
@@ -167,7 +167,7 @@ function AddMoney() {
         <div className="mb-4">
           <h3 className="font-medium text-gray-700 dark:text-gray-400">Paying with</h3>
           <div className="flex items-center bg-gray-100  dark:bg-gray-800 dark:text-gray-400 p-4 rounded-xl mt-2">
-            <FaCcVisa className="text-blue-500 w-10 h-10" />
+            <FaCcVisa className="text-green-500 w-10 h-10" />
             <div className="ml-4">
               <p className="font-medium">Debit card *{cardNumber}</p>
               <p className="text-gray-500">RON • Expires 00/20</p>

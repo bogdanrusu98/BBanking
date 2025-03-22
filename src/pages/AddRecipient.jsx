@@ -73,7 +73,7 @@ const AddRecipient = () => {
             name="name"
             value={formData.fullName}
             onChange={handleChange}
-            className="mt-1 dark:bg-gray-700 dark:text-gray-400 block w-full p-2 border border-gray-300 rounded-xl focus:ring-blue-500 focus:border-blue-500"
+            className="mt-1 dark:bg-gray-700 dark:text-gray-400 block w-full p-2 border border-gray-300 rounded-xl focus:ring-green-500 focus:border-green-500"
             required
           />
         </div>
@@ -85,7 +85,7 @@ const AddRecipient = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="mt-1  dark:bg-gray-700 dark:text-gray-400 block w-full p-2 border border-gray-300 rounded-xl focus:ring-blue-500 focus:border-blue-500"
+            className="mt-1  dark:bg-gray-700 dark:text-gray-400 block w-full p-2 border border-gray-300 rounded-xl focus:ring-green-500 focus:border-green-500"
             required
           />
         </div>
@@ -97,7 +97,7 @@ const AddRecipient = () => {
             name="iban"
             value={formData.iban}
             onChange={handleChange}
-            className="mt-1  dark:bg-gray-700 dark:text-gray-400 block w-full p-2 border border-gray-300 rounded-xl focus:ring-blue-500 focus:border-blue-500"
+            className="mt-1  dark:bg-gray-700 dark:text-gray-400 block w-full p-2 border border-gray-300 rounded-xl focus:ring-green-500 focus:border-green-500"
             required
           />
         </div>
@@ -109,14 +109,14 @@ const AddRecipient = () => {
             name="bank"
             value={formData.bank}
             onChange={handleChange}
-            className="mt-1  dark:bg-gray-700 dark:text-gray-400 block w-full p-2 border border-gray-300 rounded-xl focus:ring-blue-500 focus:border-blue-500"
+            className="mt-1  dark:bg-gray-700 dark:text-gray-400 block w-full p-2 border border-gray-300 rounded-xl focus:ring-green-500 focus:border-green-500"
             required
           />
         </div>
 
         <button
           type="submit"
-          className="w-full logo-active-button py-2 px-4 rounded-xl hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full logo-active-button py-2 px-4 rounded-xl hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
         >
           Add Recipient
         </button>

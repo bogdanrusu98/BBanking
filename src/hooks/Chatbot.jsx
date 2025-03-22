@@ -74,7 +74,7 @@ const ChatBot = () => {
       {/* Butonul cu bubble head */}
       <button
         onClick={toggleChat}
-        className="bg-blue-500 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-blue-600 transition duration-300"
+        className="bg-green-500 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-green-600 transition duration-300"
       >
         <svg
           className="w-6 h-6"
@@ -96,7 +96,7 @@ const ChatBot = () => {
       {isOpen && (
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-80 h-[500px] flex flex-col absolute bottom-16 right-0">
           {/* Header */}
-          <div className="bg-blue-500 text-white p-4 rounded-t-lg flex justify-between items-center">
+          <div className="bg-green-500 text-white p-4 rounded-t-lg flex justify-between items-center">
             <img
               className="w-10 h-10 rounded-full"
               src="https://plus.unsplash.com/premium_photo-1739538269027-7c69b6cc83a7?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -162,7 +162,7 @@ const ChatBot = () => {
                   <div
                     className={`flex flex-col leading-1.5 px-4 py-2 border-gray-200 rounded-e-xl rounded-es-xl ${
                       message.sender === 'user'
-                        ? 'bg-blue-500 text-white'
+                        ? 'bg-green-500 text-white'
                         : 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white'
                     }`}
                   >
@@ -189,12 +189,12 @@ const ChatBot = () => {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                className="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                className="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white"
                 placeholder="Type a message..."
               />
               <button
                 onClick={handleSendMessage}
-                className="ml-2 bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition duration-300"
+                className="ml-2 bg-green-500 text-white p-2 rounded-lg hover:bg-green-600 transition duration-300"
               >
                 <svg
                   className="w-6 h-6"

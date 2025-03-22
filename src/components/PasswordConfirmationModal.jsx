@@ -68,7 +68,7 @@ function PasswordConfirmationModal({ isOpen, onClose, onSuccess }) {
           value={password}
           onChange={handlePasswordChange}
           placeholder="Your password"
-          className="w-full px-4  dark:bg-gray-800 py-2 border rounded-xl border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4  dark:bg-gray-800 py-2 border rounded-xl border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500"
         />
         {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
         <div className="mt-6 flex justify-between">

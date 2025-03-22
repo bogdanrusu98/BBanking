@@ -100,8 +100,8 @@ const StatementsPage = () => {
           <h3 className="text-lg text-red-600">Total Expenses</h3>
           <p className="text-2xl font-bold">{new Intl.NumberFormat('en-US').format(totalExpenses.toFixed(2))} RON</p>
         </div>
-        <div className="bg-blue-50 p-6 rounded-xl">
-          <h3 className="text-lg text-blue-600">Profit Net</h3>
+        <div className="bg-green-50 p-6 rounded-xl">
+          <h3 className="text-lg text-green-600">Profit Net</h3>
           <p className={`text-2xl font-bold ${netProfit >= 0 ? 'text-green-600' : 'text-red-600'}`}>
           {new Intl.NumberFormat('en-US').format(netProfit.toFixed(2))} RON
           </p>

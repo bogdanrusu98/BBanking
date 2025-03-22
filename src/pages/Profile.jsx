@@ -53,7 +53,7 @@ function Profile() {
           <div>
             <h1 className="text-xl font-bold">{user.firstName} {user.lastName}</h1>
             <button
-              className="mt-2 dark:bg-green-500 text-blue-600 hover:underline rounded-xl p-2 logo-color font-semibold"
+              className="mt-2 dark:bg-green-500 text-green-600 hover:underline rounded-xl p-2 logo-color font-semibold"
               type="button"
               onClick={openPhotoModal}
             >

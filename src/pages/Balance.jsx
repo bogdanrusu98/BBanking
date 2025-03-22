@@ -101,7 +101,7 @@ function Balance() {
                 >
                   {isCopied ? (
                     <svg
-                      className="w-3.5 h-3.5 text-blue-700 dark:text-blue-500"
+                      className="w-3.5 h-3.5 text-green-700 dark:text-green-500"
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"

@@ -31,7 +31,7 @@ function Training() {
         isRead: 'false',
         senderId: 'BOT',
       });
-      navigate('/'); // Redirecționează către pagina Home după finalizare
+      navigate('/'); 
     } catch (error) {
       console.error('Error marking training as complete:', error);
     }
@@ -50,7 +50,7 @@ function Training() {
             <div
               key={step.step}
               className={`w-4 h-4 mx-1 rounded-full ${
-                currentStep >= step.step ? 'bg-blue-500' : 'bg-gray-300'
+                currentStep >= step.step ? 'bg-green-500' : 'bg-gray-300'
               }`}
             />
           ))}
@@ -96,7 +96,7 @@ function Training() {
           </button>
           <button
             onClick={handleNextStep}
-            className="px-4 py-2 bg-blue-500 text-white rounded-xl"
+            className="px-4 py-2 bg-green-500 text-white rounded-xl"
           >
             {currentStep < totalSteps ? 'Next' : 'Finish'}
           </button>
