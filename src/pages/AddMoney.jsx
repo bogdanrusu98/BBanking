@@ -61,11 +61,15 @@ function AddMoney() {
       return;
     }
 
-    if(amount < 0) {
+    if(amount <= 0) {
       toast.error("Amount has to be positive");
       return;
     }
 
+    if(isNaN(amount)) {
+      toast.error("Please enter an amount");
+      return;
+    }
     setIsSubmitting(true);
 
     try {
@@ -139,13 +143,13 @@ function AddMoney() {
               type="number"
               value={amount}
               onChange={handleAmountChange}
-              className="w-full  dark:bg-gray-800 dark:text-gray-400 px-4 py-2 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full  dark:bg-gray-800 dark:text-gray-400 px-4 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <div className="bg-gray-100 px-4 py-2  dark:bg-gray-800 dark:text-gray-400 rounded-r-md">
+            <div className="px-4 py-2  dark:bg-gray-800 dark:text-gray-400 rounded-xl">
               <select
                 value={currency}
                 onChange={handleCurrencyChange}
-                className=" dark:bg-gray-800 dark:text-gray-400 focus:outline-none"
+                className=" dark:bg-gray-800 dark:text-gray-400 rounded-xl focus:outline-none"
               >
                 <option value="">Choose currency...</option>
                 {accounts.map((account) => (

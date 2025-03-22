@@ -38,7 +38,7 @@ function Cards() {
           </div>
 
           {/* Card digital */}
-          <div className="flex items-center p-4 rounded-xl hover:bg-gray-600 cursor-pointer">
+          <div className="flex items-center p-4 rounded-xl hover:bg-gray-100 cursor-pointer">
             <FaCcVisa className="w-12 dark:text-white h-10 rounded-full flex items-center justify-center mr-4">
             </FaCcVisa>
             <div>
