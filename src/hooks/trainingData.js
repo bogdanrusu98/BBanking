@@ -11,7 +11,7 @@ export const trainingSteps = [
         "- **Transfers:** Easily transfer money between accounts or to other users.",
         "- **Notifications:** Stay updated with real-time alerts.",
       ],
-      image: "https://images.unsplash.com/photo-1556741533-8346b3f8cb0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", // Înlocuiește cu o imagine relevantă
+      image: "https://images.unsplash.com/photo-1726137570619-4e6b55c17c51?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Înlocuiește cu o imagine relevantă
       tips: [
         "Explore the dashboard to get a quick overview of your financial status.",
         "Use the navigation menu to access different features easily.",
@@ -76,7 +76,7 @@ export const trainingSteps = [
         "- **Insights:** Get personalized insights to help you save more and spend wisely.",
         "Access the budgeting tool from the **Dashboard** or **More** menu.",
       ],
-      image: "https://images.unsplash.com/photo-1554224154-26032ffc8dbe?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", // Înlocuiește cu o imagine relevantă
+      image: "https://plus.unsplash.com/premium_photo-1680795561618-267bfb9694e5?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Înlocuiește cu o imagine relevantă
       tips: [
         "Start with small, achievable goals and gradually adjust them as you get comfortable.",
         "Review your budget regularly to ensure it aligns with your financial goals.",

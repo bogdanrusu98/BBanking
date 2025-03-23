@@ -9,7 +9,7 @@ function ProgressBar({ currentStep }) {
         <div
           key={index}
           className={`text-center flex-1 pb-2 ${
-            index === currentStep ? 'font-bold text-black' : 'text-gray-500'
+            index === currentStep ? 'font-bold text-black dark:text-white' : 'text-gray-500'
           }`}
         >
           <span>{step}</span>

@@ -52,7 +52,7 @@ function Training() {
   }
 
   return (
-    <div className="p-6 sm:ml-64">
+    <div className="py-6">
       <div className="max-w-3xl mx-auto bg-white p-6 rounded-xl shadow-md">
         <h1 className="text-3xl font-semibold mb-6 text-center">Welcome to Your Banking App Training</h1>
 
@@ -74,7 +74,7 @@ function Training() {
           <img
             src={currentStepData.image}
             alt={`Step ${currentStep}`}
-            className="mx-auto mb-4 rounded-lg"
+            className="mx-auto mb-4 rounded-xl"
           />
           {currentStepData.content.map((paragraph, index) => (
             <p key={index} className="text-gray-700 mb-4">

@@ -82,6 +82,7 @@ const handleChange = (e) => {
 
       navigate('/settings/profile')
       toast('User details updated')
+      navigate(0)
   
       // Navighează înapoi la pagina de profil după salvare
     } catch (error) {
@@ -121,19 +122,22 @@ const handleChange = (e) => {
                 name="firstName"
                 value={formData.firstName}
                 onChange={handleChange}
-                disabled
-                className="input-disabled  dark:bg-gray-800 dark:text-gray-400 mt-1 block w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
-              />
+                className={`${
+                  user.firstName ? 'input-disabled' : ''
+                } dark:bg-gray-800 dark:text-gray-400 mt-1 block w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500`}
+                disabled={user.firstName} />
             </div>
             <div>
               <label className="block  dark:bg-gray-800 dark:text-gray-400 text-sm text-gray-700">Full legal last name(s)</label>
               <input
                 type="text"
                 name="lastName"
-                disabled
                 value={formData.lastName}
                 onChange={handleChange}
-                className="input-disabled  dark:bg-gray-800 dark:text-gray-400 mt-1 block w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
+                className={`${
+                  user.lastName ? 'input-disabled' : ''
+                } dark:bg-gray-800 dark:text-gray-400 mt-1 block w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500`}
+                disabled={user.lastName} 
               />
             </div>
           </div>
