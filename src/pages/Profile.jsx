@@ -46,7 +46,7 @@ function Profile() {
         {/* Header - Profile Image and Edit Button */}
         <div className="flex items-center space-x-6 mb-6">
           <img
-            className="w-20 h-20 rounded-full"
+            className="w-20 h-20 rounded-full object-cover"
             src={user.photoURL ? user.photoURL : 'https://flowbite.com/docs/images/people/profile-picture-2.jpg'}
             alt="Profile"
           />

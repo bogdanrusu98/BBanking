@@ -130,7 +130,7 @@ function Navbar({ toggleSidebar }) {
   
                 <button type="button" className=" hover:bg-gray-100 dark:hover:bg-gray-600 flex items-center mx-3 text-sm  rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="dropdown">
   <span className="sr-only">Open user menu</span>
-  <img className="w-12 h-12 rounded-full" src={user.photoURL ? user.photoURL : "https://flowbite.com/docs/images/people/profile-picture-2.jpg"} alt="user" />
+  <img className="w-12 h-12 rounded-full object-cover" src={user.photoURL ? user.photoURL : "https://flowbite.com/docs/images/people/profile-picture-2.jpg"} alt="user" />
   <span className="hidden-xs hidden-sm hidden-md m-l-1 title-5 mx-2 font-semibold	">{user.firstName + ' ' + user.lastName}</span>
   <svg id="arrow" className="w-4 h-4 ml-1 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />

@@ -5,6 +5,7 @@ import { db } from '../firebase.config';
 import { collection, query, where, getDocs, addDoc, updateDoc, doc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import {formatNumber} from '../hooks/formatNumber' 
 
 function AddMoney() {
   const user = useUser();
@@ -192,7 +193,7 @@ function AddMoney() {
           </div>
           <div className="flex justify-between mt-4 font-bold">
             <span>Total you'll pay</span>
-            <span>{totalAmount.toFixed(2)} RON</span>
+            <span>{formatNumber(totalAmount.toFixed(2))} RON</span>
           </div>
         </div>
 
