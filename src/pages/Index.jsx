@@ -18,9 +18,9 @@ function Index() {
   }, [navigate]);
 
   return (
-    <div className="bg-white dark:bg-gray-900">
+    <div className="">
       {/* Navbar */}
-      <nav className="bg-white border-gray-200 dark:bg-gray-900">
+      <nav className="bg-white border-gray-200 dark:bg-gray-900 mb-2">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <Link to="/" className="flex items-center mr-4  sm:inline-flex">
             <FaPiggyBank className="text-2xl logo dark:text-white" /> &nbsp;

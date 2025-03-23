@@ -5,6 +5,7 @@ import { toast } from 'react-toastify'
 import { FaPiggyBank } from "react-icons/fa6";
 
 function SignIn() {
+  
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -13,7 +14,6 @@ function SignIn() {
   const { email, password } = formData;
 
   const navigate = useNavigate()
-
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -35,8 +35,9 @@ function SignIn() {
       )
 
       if (userCredential.user) {
-        navigate('/home')
-        toast.success('You have been logged in!')
+    navigate('/');
+
+    window.location.reload();
       } else {
         toast.error('error')
       }
@@ -44,6 +45,7 @@ function SignIn() {
       toast.error('Email or Password wrong')
     }
   }
+
 
   return (
     <section className="bg-gray-50 dark:bg-gray-800 dark:border-gray-700">

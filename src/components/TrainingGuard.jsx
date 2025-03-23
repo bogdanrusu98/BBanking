@@ -11,7 +11,7 @@ function TrainingGuard({ children }) {
     if (user && !user.hasCompletedTraining) {
       // Dacă nu a terminat training-ul, redirecționează către pagina de training
       navigate('/training');
-    }
+    } 
   }, [user, navigate]);
 
   // Dacă utilizatorul a terminat training-ul sau dacă nu este autentificat, permite accesul la pagină

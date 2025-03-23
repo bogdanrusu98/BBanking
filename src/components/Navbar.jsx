@@ -13,8 +13,10 @@ import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, query, where, getDocs, limit, orderBy } from 'firebase/firestore';
 import { db } from '../firebase.config';
+import { formatDistanceToNow } from 'date-fns';
+
 function Navbar({ toggleSidebar }) {
   
   useEffect(() => {
@@ -34,11 +36,14 @@ function Navbar({ toggleSidebar }) {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const q = query(collection(db, 'notifications'), where('userId', '==', user.uid));
+        const q = query(collection(db, 'notifications'), where('userId', '==', user.uid),  orderBy('timestamp', 'desc'), limit(5));
         const querySnapshot = await getDocs(q);
         const fetchedNotifications = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
+          timestampFormatted: doc.data().timestamp?.seconds
+        ? formatDistanceToNow(new Date(doc.data().timestamp.seconds * 1000), { addSuffix: true })
+        : 'Invalid timestamp',
         }));
         
         setNotifications(fetchedNotifications); // actualizezi state-ul Notifications
@@ -115,7 +120,7 @@ function Navbar({ toggleSidebar }) {
           {notification.message}
         </div>
         <div className="text-xs font-medium text-primary-700 dark:text-primary-400">
-          a minute ago
+        {notification.timestampFormatted}
         </div>
       </div>
     </Link>

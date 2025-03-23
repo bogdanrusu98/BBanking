@@ -5,12 +5,19 @@ import { db } from '../firebase.config';
 import { useNavigate } from 'react-router-dom';
 import sendNotification from '../hooks/sendNotification';
 import { trainingSteps } from '../hooks/trainingData'; // Importă datele de training
-
+import { useEffect } from 'react';
 function Training() {
   const user = useUser();
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = trainingSteps.length;
+
+  // Verifică dacă utilizatorul a terminat deja training-ul
+  useEffect(() => {
+    if (user && user.hasCompletedTraining) {
+      navigate('/'); // Redirecționează către pagina principală dacă training-ul este deja completat
+    }
+  }, [user, navigate]);
 
   const handleNextStep = () => {
     if (currentStep < totalSteps) {
@@ -31,13 +38,18 @@ function Training() {
         isRead: 'false',
         senderId: 'BOT',
       });
-      navigate('/'); 
+      navigate(0); // Redirecționează către pagina principală după finalizarea training-ului
     } catch (error) {
       console.error('Error marking training as complete:', error);
     }
   };
 
   const currentStepData = trainingSteps.find((step) => step.step === currentStep);
+
+  // Dacă utilizatorul a terminat deja training-ul, nu afișa componenta
+  if (user && user.hasCompletedTraining) {
+    return null;
+  }
 
   return (
     <div className="p-6 sm:ml-64">
