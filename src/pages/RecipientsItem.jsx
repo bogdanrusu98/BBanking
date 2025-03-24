@@ -1,14 +1,16 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-
-
+import { deleteDoc } from 'firebase/firestore'; 
 import { useEffect } from 'react'
 import { initFlowbite } from 'flowbite';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase.config';
 import { useState } from 'react';
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function RecipientsItem() {
+  const navigate = useNavigate()
     useEffect(() => {
         initFlowbite()
       }, [])
@@ -55,6 +57,26 @@ export default function RecipientsItem() {
     }
   }, [recipientId]);
 
+  const handleDelete = async () => {
+    const isConfirmed = window.confirm('Are you sure you want to delete this recipient?');
+    if (!isConfirmed) return;
+  
+    try {
+      if (!recipientId) {
+        console.error('No recipient ID provided.');
+        return;
+      }
+  
+      const docRef = doc(db, 'recipients', recipientId);
+      await deleteDoc(docRef);
+  
+      toast.success('Recipient deleted successfully!');
+      navigate('/recipients');
+    } catch (error) {
+      console.error('Error deleting recipient:', error);
+      toast.error('Failed to delete recipient. Please try again.');
+    }
+  };
 
   return (
     <div className="sm:ml-64">
@@ -77,9 +99,12 @@ export default function RecipientsItem() {
                 Send
               </button>
             </Link>
-            <button className="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
-              Delete
-            </button>
+            <button
+            onClick={handleDelete}
+            className="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+          >
+            Delete
+          </button>
           </div>
   
           <hr className="my-4" />

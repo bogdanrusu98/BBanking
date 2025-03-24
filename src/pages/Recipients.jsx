@@ -86,7 +86,7 @@ function Recipients() {
     <Link
       to={`/recipients/${recipient.id}`}
       key={index}
-      className="flex items-center dark:text-white  p-4 rounded-xl cursor-pointer hover:shadow-md transition"
+      className="flex items-center dark:hover:bg-gray-600 dark:text-white  p-4 rounded-xl cursor-pointer hover:shadow-md transition"
     >
       <div className="flex items-center justify-center w-10 h-10 bg-gray-200 rounded-full text-black font-bold relative ">
         {getInitials(recipient.accountHolderName)}<CurrencyFlag currency={recipient.currency} size="md" className="bottom-0 left-7 absolute rounded-full w-3.5 h-3.5" />
